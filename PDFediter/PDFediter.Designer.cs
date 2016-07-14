@@ -28,19 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.btnEditPDF = new System.Windows.Forms.Button();
             this.btnConverttoWord = new System.Windows.Forms.Button();
             this.SuspendLayout();
-            // 
-            // btnEditPDF
-            // 
-            this.btnEditPDF.Location = new System.Drawing.Point(12, 208);
-            this.btnEditPDF.Name = "btnEditPDF";
-            this.btnEditPDF.Size = new System.Drawing.Size(75, 23);
-            this.btnEditPDF.TabIndex = 0;
-            this.btnEditPDF.Text = "StartEdit";
-            this.btnEditPDF.UseVisualStyleBackColor = true;
-            this.btnEditPDF.Click += new System.EventHandler(this.btnEditPDF_Click);
             // 
             // btnConverttoWord
             // 
@@ -58,7 +47,6 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(284, 261);
             this.Controls.Add(this.btnConverttoWord);
-            this.Controls.Add(this.btnEditPDF);
             this.Name = "PDFediter";
             this.Text = "Form1";
             this.ResumeLayout(false);
@@ -67,7 +55,6 @@
 
         #endregion
 
-        private System.Windows.Forms.Button btnEditPDF;
         private System.Windows.Forms.Button btnConverttoWord;
     }
 }
