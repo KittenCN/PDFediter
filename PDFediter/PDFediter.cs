@@ -12,8 +12,6 @@ using iTextSharp.text;
 using iTextSharp.text.pdf;
 using System.IO;
 using Spire.Pdf;
-using org.apache.pdfbox.pdmodel;
-using org.apache.pdfbox.util;
 using Novacode;
 using System.Diagnostics;
 
@@ -94,15 +92,12 @@ namespace PDFediter
             if (result == DialogResult.OK)
             {
                 string name = ofd.SafeFileName.ToString().Substring(0, ofd.SafeFileName.ToString().LastIndexOf("."));
-                string outputFile = System.IO.Directory.GetCurrentDirectory() + @"\tempPDF\" + name + ".docx";
-                PDDocument doc = null;
-                doc = PDDocument.load(ofd.FileName.ToString());
-                PDFTextStripper textStrip = new PDFTextStripper();
-                string strPDFText = textStrip.getText(doc);
-                doc.close();
-                var wordDoc = DocX.Create(outputFile);
-                wordDoc.InsertParagraph(strPDFText);
-                wordDoc.Save();
+                string outputFile = System.IO.Directory.GetCurrentDirectory() + @"\tempPDF\" + name + ".xps";
+                string cmdFile = System.IO.Directory.GetCurrentDirectory() + @"\CMD\" + "pdftohtml.exe ";
+                Spire.Pdf.PdfDocument pdf = new Spire.Pdf.PdfDocument();
+                pdf.LoadFromFile(ofd.FileName.ToString());
+                pdf.SaveToFile(outputFile, FileFormat.XPS);
+                System.Diagnostics.Process.Start(outputFile);
             }
         }
     }
