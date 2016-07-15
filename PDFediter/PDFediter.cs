@@ -30,6 +30,7 @@ namespace PDFediter
             {
                 string name = ofd.SafeFileName.ToString().Substring(0, ofd.SafeFileName.ToString().LastIndexOf("."));
                 string outputFile = System.IO.Directory.GetCurrentDirectory() + @"\tempPDF\" + name + ".doc";
+                string outputFileedit = System.IO.Directory.GetCurrentDirectory() + @"\tempPDF\" + name + "_edit.doc";
                 string cmdFile = System.IO.Directory.GetCurrentDirectory() + @"\CMD\" + "pdftohtml.exe ";
                 try
                 {
@@ -38,14 +39,42 @@ namespace PDFediter
                     pdf.SaveToFile(outputFile, FileFormat.DOC);
 
                     //Spire.Doc.Document doc = new Spire.Doc.Document();
-                    //doc.LoadFromFile(outputFile, Spire.Doc.FileFormat.XPS);
-                    //doc.Replace("保誠", "XX", true, true);
+                    //doc.LoadFromFile(outputFile, Spire.Doc.FileFormat.Doc);
+                    //doc.Replace("保誠", "XX", false, false);
+                    //doc.SaveToFile(outputFileedit, Spire.Doc.FileFormat.Doc);
 
-                    System.Diagnostics.Process.Start(outputFile);
+                    System.Diagnostics.Process.Start(outputFileedit);
                 }
                 catch(Exception ex)
                 {
 
+                }
+            }
+        }
+
+        private void btnEdit_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog ofd = new OpenFileDialog();
+            ofd.Filter = "doc(*.doc)|*.doc";
+            // Show save file dialog box
+            DialogResult result = ofd.ShowDialog();
+            if (result == DialogResult.OK)
+            {
+                string name = ofd.SafeFileName.ToString().Substring(0, ofd.SafeFileName.ToString().LastIndexOf("."));
+                //string outputFile = System.IO.Directory.GetCurrentDirectory() + @"\tempPDF\" + name + ".doc";
+                string outputFileedit = System.IO.Directory.GetCurrentDirectory() + @"\tempPDF\" + name + "_edit.doc";
+                //string cmdFile = System.IO.Directory.GetCurrentDirectory() + @"\CMD\" + "pdftohtml.exe ";
+                try
+                {
+                    Spire.Doc.Document doc = new Spire.Doc.Document();
+                    doc.LoadFromFile(ofd.FileName.ToString(), Spire.Doc.FileFormat.Doc);
+                    doc.Replace("保誠", "XX", false, false);
+                    doc.SaveToFile(outputFileedit, Spire.Doc.FileFormat.Doc);
+                    System.Diagnostics.Process.Start(outputFileedit);
+                }
+                catch (Exception ex)
+                {
+                    
                 }
             }
         }

@@ -29,11 +29,12 @@
         private void InitializeComponent()
         {
             this.btnConverttoWord = new System.Windows.Forms.Button();
+            this.btnEdit = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnConverttoWord
             // 
-            this.btnConverttoWord.Location = new System.Drawing.Point(93, 208);
+            this.btnConverttoWord.Location = new System.Drawing.Point(21, 207);
             this.btnConverttoWord.Name = "btnConverttoWord";
             this.btnConverttoWord.Size = new System.Drawing.Size(75, 23);
             this.btnConverttoWord.TabIndex = 1;
@@ -41,11 +42,22 @@
             this.btnConverttoWord.UseVisualStyleBackColor = true;
             this.btnConverttoWord.Click += new System.EventHandler(this.btnConverttoWord_Click);
             // 
+            // btnEdit
+            // 
+            this.btnEdit.Location = new System.Drawing.Point(126, 207);
+            this.btnEdit.Name = "btnEdit";
+            this.btnEdit.Size = new System.Drawing.Size(75, 23);
+            this.btnEdit.TabIndex = 2;
+            this.btnEdit.Text = "StartEdit";
+            this.btnEdit.UseVisualStyleBackColor = true;
+            this.btnEdit.Click += new System.EventHandler(this.btnEdit_Click);
+            // 
             // PDFediter
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(284, 261);
+            this.Controls.Add(this.btnEdit);
             this.Controls.Add(this.btnConverttoWord);
             this.Name = "PDFediter";
             this.Text = "Form1";
@@ -56,6 +68,7 @@
         #endregion
 
         private System.Windows.Forms.Button btnConverttoWord;
+        private System.Windows.Forms.Button btnEdit;
     }
 }
 
