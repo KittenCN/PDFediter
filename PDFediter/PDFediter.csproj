@@ -57,6 +57,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AccessHelper.cs" />
     <Compile Include="CMDHelper.cs" />
     <Compile Include="IO.cs" />
     <Compile Include="PDFediter.cs">
@@ -89,6 +90,7 @@
     <None Include="bin\Debug\tempPDF\ccl3.xps" />
     <None Include="bin\Debug\tempPDF\ccl3_Deleted.doc" />
     <None Include="bin\Debug\tempPDF\demo1.doc" />
+    <None Include="DB\BaseData.ldb" />
     <None Include="DLL\Aspose.Total.lic" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -144,6 +146,9 @@
     <Content Include="bin\Debug\tempPDF\个人信用报告s.html" />
     <Content Include="bin\Debug\tempPDF\个人信用报告_ind.html" />
     <Content Include="CMD\pdftohtml.exe" />
+    <Content Include="DB\BaseData.mdb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="DLL\Aspose.BarCode.dll" />
     <Content Include="DLL\Aspose.BarCode.Silverlight.dll" />
     <Content Include="DLL\Aspose.BarCode.Silverlight.xml" />

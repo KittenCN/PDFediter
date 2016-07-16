@@ -17,6 +17,7 @@ namespace PDFediter
 {
     public partial class PDFediter : Form
     {
+        public static string DBfile = ".\\DB\\BaseData.mdb";
         public PDFediter()
         {
             InitializeComponent();
@@ -200,6 +201,194 @@ namespace PDFediter
                     MessageBox.Show(ex.ToString());
                 }
             }
+        }
+
+        private void btnInsert_Click(object sender, EventArgs e)
+        {
+            AccessHelper ah = new AccessHelper(DBfile);
+            string strSQL = "insert into tabOperation(OperationType,InAddress,OutAddress,PicAddress,IntIndex,SourceText,ReplaceText,Flag) ";
+            strSQL = strSQL + " values('" + cbOperationType.SelectedIndex.ToString() + "','" + tbInAddress.Text + "','" + tbOutAddress.Text + "','" + tbPicAddress.Text + "','" + tbIntIndex.Text + "','" + tbSourceText.Text + "','" + tbReplaceText.Text + "','1') ";
+            ah.ExecuteNonQuery(strSQL);
+            FlashData();
+        }
+
+        private void PDFediter_Load(object sender, EventArgs e)
+        {
+            cbOperationType.Items.Add("替换图片");
+            cbOperationType.Items.Add("替换文字");
+
+            tbIntIndex.KeyPress += tbIntIndex_KeyPress;
+            cbOperationType.SelectedIndexChanged += CbOperationType_SelectedIndexChanged;
+            dgvMain.SelectionChanged += DgvMain_SelectionChanged;
+
+            cbOperationType.SelectedIndex = 0;
+
+            FlashData();
+        }
+
+        private void DgvMain_SelectionChanged(object sender, EventArgs e)
+        {
+            //throw new NotImplementedException();
+            if(dgvMain.SelectedRows.Count!=0 && dgvMain.CurrentRow.Cells["id"].Value.ToString() != null && dgvMain.CurrentRow.Cells["id"].Value.ToString() != "")
+            {
+                int RowIndex = dgvMain.CurrentRow.Index;
+                tbInAddress.Text = dgvMain.CurrentRow.Cells["源地址"].Value.ToString();
+                tbOutAddress.Text= dgvMain.CurrentRow.Cells["目标地址"].Value.ToString();
+                switch (dgvMain.CurrentRow.Cells["操作类型"].Value.ToString())
+                {
+                    case "替换图片":
+                        cbOperationType.SelectedIndex = 0;
+                        tbPicAddress.Text = dgvMain.CurrentRow.Cells["图片地址"].Value.ToString();
+                        tbIntIndex.Text = dgvMain.CurrentRow.Cells["图片索引"].Value.ToString();
+                        tbSourceText.Text = "";
+                        tbReplaceText.Text = "";
+                        tbPicAddress.Enabled = true;
+                        btnPicAddress.Enabled = true;
+                        tbIntIndex.Enabled = true;
+                        tbSourceText.Enabled = false;
+                        tbReplaceText.Enabled = false;
+                        break;
+                    case "替换文字":
+                        cbOperationType.SelectedIndex = 1;
+                        tbPicAddress.Text = "";
+                        tbIntIndex.Text = "";
+                        tbSourceText.Text = dgvMain.CurrentRow.Cells["源字段"].Value.ToString();
+                        tbReplaceText.Text = dgvMain.CurrentRow.Cells["替换字段"].Value.ToString();
+                        tbPicAddress.Enabled = false;
+                        btnPicAddress.Enabled = false;
+                        tbIntIndex.Enabled = false;
+                        tbSourceText.Enabled = true;
+                        tbReplaceText.Enabled = true;
+                        break;
+                    default:
+                        tbPicAddress.Text = "";
+                        tbIntIndex.Text = "";
+                        tbSourceText.Text = "";
+                        tbReplaceText.Text = "";
+                        tbPicAddress.Enabled = false;
+                        btnPicAddress.Enabled = false;
+                        tbIntIndex.Enabled = false;
+                        tbSourceText.Enabled = false;
+                        tbReplaceText.Enabled = false;
+                        break;
+                }
+            }
+        }
+
+        private void CbOperationType_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            //throw new NotImplementedException();
+            switch (cbOperationType.SelectedIndex)
+            {
+                case 0:
+                    tbPicAddress.Text = "";
+                    tbIntIndex.Text = "";
+                    tbSourceText.Text = "";
+                    tbReplaceText.Text = "";
+                    tbPicAddress.Enabled = true;
+                    btnPicAddress.Enabled = true;
+                    tbIntIndex.Enabled = true;
+                    tbSourceText.Enabled = false;
+                    tbReplaceText.Enabled = false;
+                    break;
+                case 1:
+                    tbPicAddress.Text = "";
+                    tbIntIndex.Text = "";
+                    tbSourceText.Text = "";
+                    tbReplaceText.Text = "";
+                    tbPicAddress.Enabled = false;
+                    btnPicAddress.Enabled = false;
+                    tbIntIndex.Enabled = false;
+                    tbSourceText.Enabled = true;
+                    tbReplaceText.Enabled = true;
+                    break;
+                default:
+                    tbPicAddress.Text = "";
+                    tbIntIndex.Text = "";
+                    tbSourceText.Text = "";
+                    tbReplaceText.Text = "";
+                    tbPicAddress.Enabled = false;
+                    btnPicAddress.Enabled = false;
+                    tbIntIndex.Enabled = false;
+                    tbSourceText.Enabled = false;
+                    tbReplaceText.Enabled = false;
+                    break;
+            }
+        }
+
+        private void FlashData()
+        {
+            AccessHelper ah = new AccessHelper(DBfile);
+            string strSQL = "select * from tabOperation where Flag='1' order by id";
+            DataTable dtSQL = ah.ReturnDataTable(strSQL);
+            for (int i = 0; i < dtSQL.Rows.Count; i++)
+            {
+                switch (dtSQL.Rows[i]["OperationType"].ToString())
+                {
+                    case "0":
+                        dtSQL.Rows[i]["OperationType"] = "替换图片";
+                        break;
+                    case "1":
+                        dtSQL.Rows[i]["OperationType"] = "替换文字";
+                        break;
+                    default:
+                        dtSQL.Rows[i]["OperationType"] = "--";
+                        break;
+                }
+            }
+            dgvMain.DataSource = dtSQL;
+        }
+
+        private void btnInAddress_Click(object sender, EventArgs e)
+        {
+            FolderBrowserDialog dilog = new FolderBrowserDialog();
+            dilog.Description = "请选择文件夹";
+            if (dilog.ShowDialog() == DialogResult.OK || dilog.ShowDialog() == DialogResult.Yes)
+            {
+                tbInAddress.Text = dilog.SelectedPath;
+            }
+        }
+
+        private void btnOutAddress_Click(object sender, EventArgs e)
+        {
+            FolderBrowserDialog dilog = new FolderBrowserDialog();
+            dilog.Description = "请选择文件夹";
+            if (dilog.ShowDialog() == DialogResult.OK || dilog.ShowDialog() == DialogResult.Yes)
+            {
+                tbOutAddress.Text = dilog.SelectedPath;
+            }
+        }
+
+        private void btnPicAddress_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog ofd = new OpenFileDialog();
+            ofd.Filter = "All Files(*.*)|*.*";
+            // Show save file dialog box
+            DialogResult result = ofd.ShowDialog();
+            if (result == DialogResult.OK)
+            {
+                tbPicAddress.Text = ofd.FileName.ToString();
+            }
+        }
+
+        private void tbIntIndex_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) &&
+                (e.KeyChar != '.'))
+            {
+                e.Handled = true;
+            }
+
+            // only allow one decimal point
+            if ((e.KeyChar == '.') && ((sender as TextBox).Text.IndexOf('.') > -1))
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void dgvMain_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            
         }
     }
 }
