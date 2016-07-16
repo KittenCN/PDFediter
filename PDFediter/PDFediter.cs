@@ -450,6 +450,7 @@ namespace PDFediter
                                     PDFHelper.ConvertPDFtoDOCX(finf.FullName.ToString(), strTempAddress);
                                     WordHelper.ReplacePIC(docxFile, int.Parse(strIntIndex), strPicAddress, strTempAddress);
                                     WordHelper.ConvertDOCXtoPDF(docxFile, strOutAddress);
+                                    System.Threading.Thread.Sleep(5000);
                                 }
                             }
                             break;
@@ -472,6 +473,7 @@ namespace PDFediter
                                     PDFHelper.ConvertPDFtoDOCX(finf.FullName.ToString(), strTempAddress);
                                     WordHelper.ReplaceText(docxFile, strSourceText, strReplaceText, strTempAddress);
                                     WordHelper.ConvertDOCXtoPDF(docxFile, strOutAddress);
+                                    System.Threading.Thread.Sleep(5000);
                                 }
                             }
                             break;
