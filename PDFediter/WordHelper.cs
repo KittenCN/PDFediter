@@ -35,7 +35,7 @@ namespace PDFediter
             foreach (Shape nshape in shapes)
             {
                 i++;
-                if(i>=intIndex)
+                if(i==intIndex)
                 {
                     nshape.ImageData.SetImage(strPicAddress);
                 } 

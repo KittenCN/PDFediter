@@ -418,5 +418,71 @@ namespace PDFediter
                 FlashData();
             }
         }
+
+        private void btnRun_Click(object sender, EventArgs e)
+        {
+            string strInAddress = "";
+            string strOutAddress = "";
+            string strPicAddress = "";
+            string strIntIndex = "";
+            string strSourceText = "";
+            string strReplaceText = "";
+            string strTempAddress = "";
+            for(int x=0;x<dgvMain.Rows.Count;x++)
+            {
+                switch(dgvMain.Rows[x].Cells["操作类型"].Value.ToString())
+                {
+                    case "替换图片":
+                        {
+                            strInAddress = dgvMain.Rows[x].Cells["源地址"].Value.ToString();
+                            strOutAddress = dgvMain.Rows[x].Cells["目标地址"].Value.ToString();
+                            strPicAddress = dgvMain.Rows[x].Cells["图片地址"].Value.ToString();
+                            strIntIndex = dgvMain.Rows[x].Cells["图片索引"].Value.ToString();
+                            strTempAddress = strInAddress + @"\tempout\";
+                            DirectoryInfo dir = new DirectoryInfo(strInAddress);
+                            FileInfo[] inf = dir.GetFiles();
+                            foreach (FileInfo finf in inf)
+                            {
+                                if (finf.Extension.Equals(".pdf"))
+                                {
+                                    string inname = Path.GetFileNameWithoutExtension(finf.FullName.ToString());
+                                    string docxFile = strTempAddress + inname + ".docx";
+                                    PDFHelper.ConvertPDFtoDOCX(finf.FullName.ToString(), strTempAddress);
+                                    WordHelper.ReplacePIC(docxFile, int.Parse(strIntIndex), strPicAddress, strTempAddress);
+                                    WordHelper.ConvertDOCXtoPDF(docxFile, strOutAddress);
+                                }
+                            }
+                            break;
+                        }
+                    case "替换文字":
+                        {
+                            strInAddress = dgvMain.Rows[x].Cells["源地址"].Value.ToString();
+                            strOutAddress = dgvMain.Rows[x].Cells["目标地址"].Value.ToString();
+                            strSourceText = dgvMain.Rows[x].Cells["源字段"].Value.ToString();
+                            strReplaceText = dgvMain.Rows[x].Cells["替换字段"].Value.ToString();
+                            strTempAddress = strInAddress + @"\tempout\";
+                            DirectoryInfo dir = new DirectoryInfo(strInAddress);
+                            FileInfo[] inf = dir.GetFiles();
+                            foreach (FileInfo finf in inf)
+                            {
+                                if (finf.Extension.Equals(".pdf"))
+                                {
+                                    string inname = Path.GetFileNameWithoutExtension(finf.FullName.ToString());
+                                    string docxFile = strTempAddress + inname + ".docx";
+                                    PDFHelper.ConvertPDFtoDOCX(finf.FullName.ToString(), strTempAddress);
+                                    WordHelper.ReplaceText(docxFile, strSourceText, strReplaceText, strTempAddress);
+                                    WordHelper.ConvertDOCXtoPDF(docxFile, strOutAddress);
+                                }
+                            }
+                            break;
+                        }
+                    default:
+                        {
+                            break;
+                        }
+                }
+            }
+            MessageBox.Show("已完成所有列表执行动作.");
+        }
     }
 }

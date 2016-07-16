@@ -415,6 +415,7 @@
             this.btnRun.TabIndex = 29;
             this.btnRun.Text = "执行";
             this.btnRun.UseVisualStyleBackColor = true;
+            this.btnRun.Click += new System.EventHandler(this.btnRun_Click);
             // 
             // PDFediter
             // 
