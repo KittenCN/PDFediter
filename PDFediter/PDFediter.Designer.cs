@@ -36,6 +36,15 @@
             this.btnDOCXtoPDF = new System.Windows.Forms.Button();
             this.gb_test = new System.Windows.Forms.GroupBox();
             this.dgvMain = new System.Windows.Forms.DataGridView();
+            this.操作类型 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.源地址 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.目标地址 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.图片地址 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.图片索引 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.源字段 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.替换字段 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.FLag = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.id = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cbOperationType = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -57,15 +66,6 @@
             this.btnUpdate = new System.Windows.Forms.Button();
             this.btnDelete = new System.Windows.Forms.Button();
             this.btnRun = new System.Windows.Forms.Button();
-            this.操作类型 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.源地址 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.目标地址 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.图片地址 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.图片索引 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.源字段 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.替换字段 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.FLag = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.id = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.gb_test.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvMain)).BeginInit();
             this.SuspendLayout();
@@ -168,6 +168,71 @@
             this.dgvMain.Size = new System.Drawing.Size(748, 402);
             this.dgvMain.TabIndex = 8;
             this.dgvMain.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvMain_CellContentClick);
+            // 
+            // 操作类型
+            // 
+            this.操作类型.DataPropertyName = "OperationType";
+            this.操作类型.HeaderText = "操作类型";
+            this.操作类型.Name = "操作类型";
+            this.操作类型.ReadOnly = true;
+            // 
+            // 源地址
+            // 
+            this.源地址.DataPropertyName = "InAddress";
+            this.源地址.HeaderText = "源地址";
+            this.源地址.Name = "源地址";
+            this.源地址.ReadOnly = true;
+            // 
+            // 目标地址
+            // 
+            this.目标地址.DataPropertyName = "OutAddress";
+            this.目标地址.HeaderText = "目标地址";
+            this.目标地址.Name = "目标地址";
+            this.目标地址.ReadOnly = true;
+            // 
+            // 图片地址
+            // 
+            this.图片地址.DataPropertyName = "PicAddress";
+            this.图片地址.HeaderText = "图片地址";
+            this.图片地址.Name = "图片地址";
+            this.图片地址.ReadOnly = true;
+            // 
+            // 图片索引
+            // 
+            this.图片索引.DataPropertyName = "IntIndex";
+            this.图片索引.HeaderText = "图片索引";
+            this.图片索引.Name = "图片索引";
+            this.图片索引.ReadOnly = true;
+            // 
+            // 源字段
+            // 
+            this.源字段.DataPropertyName = "SourceText";
+            this.源字段.HeaderText = "源字段";
+            this.源字段.Name = "源字段";
+            this.源字段.ReadOnly = true;
+            // 
+            // 替换字段
+            // 
+            this.替换字段.DataPropertyName = "ReplaceText";
+            this.替换字段.HeaderText = "替换字段";
+            this.替换字段.Name = "替换字段";
+            this.替换字段.ReadOnly = true;
+            // 
+            // FLag
+            // 
+            this.FLag.DataPropertyName = "Flag";
+            this.FLag.HeaderText = "Flag";
+            this.FLag.Name = "FLag";
+            this.FLag.ReadOnly = true;
+            this.FLag.Visible = false;
+            // 
+            // id
+            // 
+            this.id.DataPropertyName = "id";
+            this.id.HeaderText = "id";
+            this.id.Name = "id";
+            this.id.ReadOnly = true;
+            this.id.Visible = false;
             // 
             // cbOperationType
             // 
@@ -330,6 +395,7 @@
             this.btnUpdate.TabIndex = 27;
             this.btnUpdate.Text = "修改";
             this.btnUpdate.UseVisualStyleBackColor = true;
+            this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
             // 
             // btnDelete
             // 
@@ -339,6 +405,7 @@
             this.btnDelete.TabIndex = 28;
             this.btnDelete.Text = "删除";
             this.btnDelete.UseVisualStyleBackColor = true;
+            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
             // 
             // btnRun
             // 
@@ -348,71 +415,6 @@
             this.btnRun.TabIndex = 29;
             this.btnRun.Text = "执行";
             this.btnRun.UseVisualStyleBackColor = true;
-            // 
-            // 操作类型
-            // 
-            this.操作类型.DataPropertyName = "OperationType";
-            this.操作类型.HeaderText = "操作类型";
-            this.操作类型.Name = "操作类型";
-            this.操作类型.ReadOnly = true;
-            // 
-            // 源地址
-            // 
-            this.源地址.DataPropertyName = "InAddress";
-            this.源地址.HeaderText = "源地址";
-            this.源地址.Name = "源地址";
-            this.源地址.ReadOnly = true;
-            // 
-            // 目标地址
-            // 
-            this.目标地址.DataPropertyName = "OutAddress";
-            this.目标地址.HeaderText = "目标地址";
-            this.目标地址.Name = "目标地址";
-            this.目标地址.ReadOnly = true;
-            // 
-            // 图片地址
-            // 
-            this.图片地址.DataPropertyName = "PicAddress";
-            this.图片地址.HeaderText = "图片地址";
-            this.图片地址.Name = "图片地址";
-            this.图片地址.ReadOnly = true;
-            // 
-            // 图片索引
-            // 
-            this.图片索引.DataPropertyName = "IntIndex";
-            this.图片索引.HeaderText = "图片索引";
-            this.图片索引.Name = "图片索引";
-            this.图片索引.ReadOnly = true;
-            // 
-            // 源字段
-            // 
-            this.源字段.DataPropertyName = "SourceText";
-            this.源字段.HeaderText = "源字段";
-            this.源字段.Name = "源字段";
-            this.源字段.ReadOnly = true;
-            // 
-            // 替换字段
-            // 
-            this.替换字段.DataPropertyName = "ReplaceText";
-            this.替换字段.HeaderText = "替换字段";
-            this.替换字段.Name = "替换字段";
-            this.替换字段.ReadOnly = true;
-            // 
-            // FLag
-            // 
-            this.FLag.DataPropertyName = "Flag";
-            this.FLag.HeaderText = "Flag";
-            this.FLag.Name = "FLag";
-            this.FLag.ReadOnly = true;
-            this.FLag.Visible = false;
-            // 
-            // id
-            // 
-            this.id.DataPropertyName = "id";
-            this.id.HeaderText = "id";
-            this.id.Name = "id";
-            this.id.ReadOnly = true;
-            this.id.Visible = false;
             // 
             // PDFediter
             // 

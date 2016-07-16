@@ -390,5 +390,33 @@ namespace PDFediter
         {
             
         }
+
+        private void btnUpdate_Click(object sender, EventArgs e)
+        {
+            if (dgvMain.SelectedRows.Count != 0 && dgvMain.CurrentRow.Cells["id"].Value.ToString() != null && dgvMain.CurrentRow.Cells["id"].Value.ToString() != "")
+            {
+                AccessHelper ah = new AccessHelper(DBfile);
+                //(OperationType,InAddress,OutAddress,PicAddress,IntIndex,SourceText,ReplaceText,Flag)
+                string strSQL = "update tabOperation set ";
+                strSQL = strSQL + " OperationType='" + cbOperationType.SelectedIndex.ToString() + "',InAddress='" + tbInAddress.Text + "',OutAddress='" + tbOutAddress.Text + "',PicAddress='" + tbPicAddress.Text + "',IntIndex='" + tbIntIndex.Text + "',SourceText='" + tbSourceText.Text + "',ReplaceText='" + tbReplaceText.Text + "' ";
+                strSQL = strSQL + " where id=" + dgvMain.CurrentRow.Cells["id"].Value.ToString();
+                ah.ExecuteNonQuery(strSQL);
+                FlashData();
+            }
+        }
+
+        private void btnDelete_Click(object sender, EventArgs e)
+        {
+            if (dgvMain.SelectedRows.Count != 0 && dgvMain.CurrentRow.Cells["id"].Value.ToString() != null && dgvMain.CurrentRow.Cells["id"].Value.ToString() != "")
+            {
+                AccessHelper ah = new AccessHelper(DBfile);
+                //(OperationType,InAddress,OutAddress,PicAddress,IntIndex,SourceText,ReplaceText,Flag)
+                string strSQL = "update tabOperation set ";
+                //strSQL = strSQL + " OperationType='" + cbOperationType.SelectedIndex.ToString() + "',InAddress='" + tbInAddress.Text + "',OutAddress='" + tbOutAddress.Text + "',PicAddress='" + tbPicAddress.Text + "',IntIndex='" + tbIntIndex.Text + "',SourceText='" + tbSourceText.Text + "',ReplaceText='" + tbReplaceText.Text + "' ";
+                strSQL = strSQL + " Flag=0 where id=" + dgvMain.CurrentRow.Cells["id"].Value.ToString();
+                ah.ExecuteNonQuery(strSQL);
+                FlashData();
+            }
+        }
     }
 }
