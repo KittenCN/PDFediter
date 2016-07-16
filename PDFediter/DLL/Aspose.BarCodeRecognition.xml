@@ -1,0 +1,966 @@
+<?xml version="1.0"?>
+<doc>
+  <assembly>
+    <name>Aspose.BarCodeRecognition</name>
+  </assembly>
+  <members>
+    <member name="T:Aspose.BarCodeRecognition.License">
+      <summary>
+            Provides methods to license the component.
+            </summary>
+      <example>
+            In this example, an attempt will be made to find a license file named MyLicense.lic
+            in the folder that contains 
+            
+            
+            the component, in the folder that contains the calling assembly,
+            in the folder of the entry assembly and then in the embedded resources of the calling assembly.
+            <code>
+            [C#]
+            
+            License license = new License();
+            license.SetLicense("MyLicense.lic");
+            
+            
+            [Visual Basic]
+            
+            Dim license As license = New license
+            License.SetLicense("MyLicense.lic")
+            </code></example>
+    </member>
+    <member name="M:Aspose.BarCodeRecognition.License.#ctor">
+      <summary>
+            Initializes a new instance of this class.
+            </summary>
+      <example>
+            In this example, an attempt will be made to find a license file named MyLicense.lic
+            in the folder that contains 
+            
+            
+            the component, in the folder that contains the calling assembly,
+            in the folder of the entry assembly and then in the embedded resources of the calling assembly.
+            <code>
+            [C#]
+            
+            License license = new License();
+            license.SetLicense("MyLicense.lic");
+            
+            
+            [Visual Basic]
+            
+            Dim license As license = New license
+            License.SetLicense("MyLicense.lic")
+            </code></example>
+    </member>
+    <member name="M:Aspose.BarCodeRecognition.License.SetLicense(System.String)">
+      <summary>
+            Licenses the component.
+            </summary>
+      <remarks>
+        <p>Tries to find the license in the following locations:</p>
+        <p>1. Explicit path.</p>
+        <p>2. The folder that contains the Aspose component assembly.</p>
+        <p>3. The folder that contains the client's calling assembly.</p>
+        <p>4. The folder that contains the entry (startup) assembly.</p>
+        <p>5. An embedded resource in the client's calling assembly.</p>
+        <p>
+          <b>Note:</b>On the .NET Compact Framework, tries to find the license only in these locations:</p>
+        <p>1. Explicit path.</p>
+        <p>2. An embedded resource in the client's calling assembly.</p>
+      </remarks>
+      <example>
+            In this example, an attempt will be made to find a license file named MyLicense.lic
+            in the folder that contains 
+            
+            
+            the component, in the folder that contains the calling assembly,
+            in the folder of the entry assembly and then in the embedded resources of the calling assembly.
+            <code>
+            [C#]
+            
+            License license = new License();
+            license.SetLicense("MyLicense.lic");
+            
+            
+            [Visual Basic]
+            
+            Dim license As License = New License
+            license.SetLicense("MyLicense.lic")
+            </code><param name="licenseName">Can be a full or short file name or name of an embedded resource.
+            Use an empty string to switch to evaluation mode.</param></example>
+    </member>
+    <member name="M:Aspose.BarCodeRecognition.License.SetLicense(System.IO.Stream)">
+      <summary>
+            Licenses the component.
+            </summary>
+      <param name="stream">A stream that contains the license.</param>
+      <remarks>
+        <p>Use this method to load a license from a stream.</p>
+      </remarks>
+      <example>
+        <code>
+            [C#]
+            
+            License license = new License();
+            license.SetLicense(myStream);
+            
+            
+            [Visual Basic]
+            
+            Dim license as License = new License
+            license.SetLicense(myStream)
+            </code>
+      </example>
+    </member>
+    <member name="T:Aspose.BarCodeRecognition.BuildVersionInfo">
+      <summary>
+            Contains the current build version information.
+            </summary>
+    </member>
+    <member name="F:Aspose.BarCodeRecognition.BuildVersionInfo.AssemblyVersion">
+      <summary>
+            The assembly version.
+            </summary>
+    </member>
+    <member name="F:Aspose.BarCodeRecognition.BuildVersionInfo.FileVersion">
+      <summary>
+            The file version.
+            </summary>
+    </member>
+    <member name="F:Aspose.BarCodeRecognition.BuildVersionInfo.Product">
+      <summary>
+            The product title.
+            </summary>
+    </member>
+    <member name="F:Aspose.BarCodeRecognition.BuildVersionInfo.ProductMajor">
+      <summary>
+            The major product version.
+            </summary>
+    </member>
+    <member name="F:Aspose.BarCodeRecognition.BuildVersionInfo.ProductMinor">
+      <summary>
+            The minor product version.
+            </summary>
+    </member>
+    <member name="F:Aspose.BarCodeRecognition.BuildVersionInfo.ReleaseDate">
+      <summary>
+            The product release date.
+            </summary>
+    </member>
+    <member name="T:Aspose.BarCodeRecognition.ChecksumValidation">
+      <summary>
+        <para>Enable checksum validation during recognition for 1D barcodes.</para>
+        <para>Default is treated as Yes for symbologies which must contain checksum, as No where checksum only possible.</para>
+        <para>Checksum never used: Codabar</para>
+        <para>Checksum is possible: Code39 Standard/Extended, Standard2of5, Interleaved2of5, Matrix2of5, ItalianPost25, DeutschePostIdentcode, DeutschePostLeitcode, VIN</para>
+        <para>Checksum always used: Rest symbologies</para>
+      </summary>
+    </member>
+    <member name="F:Aspose.BarCodeRecognition.ChecksumValidation.Default">
+      <summary>
+            If checksum is required by the specification - it will be validated.
+            </summary>
+    </member>
+    <member name="F:Aspose.BarCodeRecognition.ChecksumValidation.On">
+      <summary>
+            Always validate checksum if possible.
+            </summary>
+    </member>
+    <member name="F:Aspose.BarCodeRecognition.ChecksumValidation.Off">
+      <summary>
+            Do not validate checksum.
+            </summary>
+    </member>
+    <member name="T:Aspose.BarCodeRecognition.BarCodeReadType">
+      <summary>
+            Specify the type of barcode to read. 
+            <example>
+            Detect an code39 and Code128 barcode 
+            <code>
+            [C#]
+            BarCodeReader reader;
+            BarCodeReader reader;
+            reader = new BarCodeReader(@"c:\test.jpg", BarCodeReadType.Code39Standard | BarCodeReadType.Code128);
+            while(reader.Read())
+            {
+            Console.WriteLine("BarCode Type: "+ reader.GetReadType());
+            Console.WriteLine("BarCode CodeText: " + reader.GetCodeText());
+            }
+            reader.Close();
+            [VB.NET]
+            Dim reader As BarCodeReader
+            reader = New BarCodeReader("c:\test.jpg", BarCodeReadType.Code39Standard | BarCodeReadType.Code128)
+            While reader.Read()
+            Console.WriteLine("BarCode Type: " + reader.GetReadType())
+            Console.WriteLine("BarCode CodeText: " + reader.GetCodeText())
+            End While
+            reader.Close()
+            </code></example></summary>
+    </member>
+    <member name="F:Aspose.BarCodeRecognition.BarCodeReadType.Codabar">
+      <summary>
+            Specifies that the data should be encoded with <b>CODABAR</b> barcode specification 
+            </summary>
+    </member>
+    <member name="F:Aspose.BarCodeRecognition.BarCodeReadType.Code11">
+      <summary>
+            Specifies that the data should be encoded with <b>CODE 11</b> barcode specification 
+            </summary>
+    </member>
+    <member name="F:Aspose.BarCodeRecognition.BarCodeReadType.Code39Standard">
+      <summary>
+            Specifies that the data should be encoded with <b>Standard CODE 39</b> barcode specification 
+            </summary>
+    </member>
+    <member name="F:Aspose.BarCodeRecognition.BarCodeReadType.Code39Extended">
+      <summary>
+            Specifies that the data should be encoded with <b>Extended CODE 39</b> barcode specification 
+            </summary>
+    </member>
+    <member name="F:Aspose.BarCodeRecognition.BarCodeReadType.Code93Standard">
+      <summary>
+            Specifies that the data should be encoded with <b>Standard CODE 93</b> barcode specification 
+            </summary>
+    </member>
+    <member name="F:Aspose.BarCodeRecognition.BarCodeReadType.Code93Extended">
+      <summary>
+            Specifies that the data should be encoded with <b>Extended CODE 93</b> barcode specification 
+            </summary>
+    </member>
+    <member name="F:Aspose.BarCodeRecognition.BarCodeReadType.Code128">
+      <summary>
+            Specifies that the data should be encoded with <b>CODE 128</b> barcode specification 
+            </summary>
+    </member>
+    <member name="F:Aspose.BarCodeRecognition.BarCodeReadType.GS1Code128">
+      <summary>
+            Specifies that the data should be encoded with <b>GS1 CODE 128</b> barcode specification 
+            </summary>
+    </member>
+    <member name="F:Aspose.BarCodeRecognition.BarCodeReadType.EAN8">
+      <summary>
+            Specifies that the data should be encoded with <b>EAN-8</b> barcode specification 
+            </summary>
+    </member>
+    <member name="F:Aspose.BarCodeRecognition.BarCodeReadType.EAN13">
+      <summary>
+            Specifies that the data should be encoded with <b>EAN-13</b> barcode specification 
+            </summary>
+    </member>
+    <member name="F:Aspose.BarCodeRecognition.BarCodeReadType.EAN14">
+      <summary>
+            Specifies that the data should be encoded with <b>EAN14</b> barcode specification
+            </summary>
+    </member>
+    <member name="F:Aspose.BarCodeRecognition.BarCodeReadType.SCC14">
+      <summary>
+            Specifies that the data should be encoded with <b>SCC14</b> barcode specification
+            </summary>
+    </member>
+    <member name="F:Aspose.BarCodeRecognition.BarCodeReadType.SSCC18">
+      <summary>
+            Specifies that the data should be encoded with <b>SSCC18</b> barcode specification
+            </summary>
+    </member>
+    <member name="F:Aspose.BarCodeRecognition.BarCodeReadType.UPCA">
+      <summary>
+            Specifies that the data should be encoded with <b>UPC-A</b> barcode specification 
+            </summary>
+    </member>
+    <member name="F:Aspose.BarCodeRecognition.BarCodeReadType.UPCE">
+      <summary>
+            Specifies that the data should be encoded with <b>UPC-E</b> barcode specification 
+            </summary>
+    </member>
+    <member name="F:Aspose.BarCodeRecognition.BarCodeReadType.ISBN">
+      <summary>
+            Specifies that the data should be encoded with <b>ISBN</b> barcode specification 
+            </summary>
+    </member>
+    <member name="F:Aspose.BarCodeRecognition.BarCodeReadType.Standard2of5">
+      <summary>
+            Specifies that the data should be encoded with <b>Standard 2 of 5</b> barcode specification 
+            </summary>
+    </member>
+    <member name="F:Aspose.BarCodeRecognition.BarCodeReadType.Interleaved2of5">
+      <summary>
+            Specifies that the data should be encoded with <b>INTERLEAVED 2 of 5</b> barcode specification 
+            </summary>
+    </member>
+    <member name="F:Aspose.BarCodeRecognition.BarCodeReadType.Matrix2of5">
+      <summary>
+            Specifies that the data should be encoded with <b>Matrix 2 of 5</b> barcode specification 
+            </summary>
+    </member>
+    <member name="F:Aspose.BarCodeRecognition.BarCodeReadType.ItalianPost25">
+      <summary>
+            Represents Italian Post 25 barcode.
+            </summary>
+    </member>
+    <member name="F:Aspose.BarCodeRecognition.BarCodeReadType.IATA2of5">
+      <summary>
+            Represents IATA 2 of 5 barcode.IATA (International Air Transport Assosiation) uses this barcode for the management of air cargo.
+            </summary>
+    </member>
+    <member name="F:Aspose.BarCodeRecognition.BarCodeReadType.ITF14">
+      <summary>
+            Specifies that the data should be encoded with <b>ITF14</b> barcode specification
+            </summary>
+    </member>
+    <member name="F:Aspose.BarCodeRecognition.BarCodeReadType.ITF6">
+      <summary>
+            Specifies that the data should be encoded with <b>ITF6</b> barcode specification 
+            </summary>
+    </member>
+    <member name="F:Aspose.BarCodeRecognition.BarCodeReadType.MSI">
+      <summary>
+            Specifies that the data should be encoded with <b>MSI Plessey</b> barcode specification 
+            </summary>
+    </member>
+    <member name="F:Aspose.BarCodeRecognition.BarCodeReadType.VIN">
+      <summary>
+            Represents VIN (Vehicle Identification Number) Barcode.
+            </summary>
+    </member>
+    <member name="F:Aspose.BarCodeRecognition.BarCodeReadType.DeutschePostIdentcode">
+      <summary>
+            Specifies that the data should be encoded with <b>DeutschePost Ident code</b> barcode specification 
+            </summary>
+    </member>
+    <member name="F:Aspose.BarCodeRecognition.BarCodeReadType.DeutschePostLeitcode">
+      <summary>
+            Specifies that the data should be encoded with <b>DeutschePost Leit code</b> barcode specification 
+            </summary>
+    </member>
+    <member name="F:Aspose.BarCodeRecognition.BarCodeReadType.OPC">
+      <summary>
+            Specifies that the data should be encoded with <b>OPC</b> barcode specification 
+            </summary>
+    </member>
+    <member name="F:Aspose.BarCodeRecognition.BarCodeReadType.PZN">
+      <summary>
+             Represents PZN barcode.This Symbology is also known as Pharma Zentral Nummer,Pharmazentralnummer
+            </summary>
+    </member>
+    <member name="F:Aspose.BarCodeRecognition.BarCodeReadType.Pharmacode">
+      <summary>
+            Represents Pharmacode barcode. This Symbology is also known as Code32
+            </summary>
+    </member>
+    <member name="F:Aspose.BarCodeRecognition.BarCodeReadType.DataMatrix">
+      <summary>
+            2D barcode symbology DataMatrix
+            </summary>
+    </member>
+    <member name="F:Aspose.BarCodeRecognition.BarCodeReadType.GS1DataMatrix">
+      <summary>
+            2D barcode symbology GS1DataMatrix
+            </summary>
+    </member>
+    <member name="F:Aspose.BarCodeRecognition.BarCodeReadType.QR">
+      <summary>
+            Specifies that the data should be encoded with <b>QR Code</b> barcode specification
+            </summary>
+    </member>
+    <member name="F:Aspose.BarCodeRecognition.BarCodeReadType.Aztec">
+      <summary>
+            Specifies that the data should be encoded with <b>Aztec</b> barcode specification
+            </summary>
+    </member>
+    <member name="F:Aspose.BarCodeRecognition.BarCodeReadType.Pdf417">
+      <summary>
+            2D barcode symbology Pdf417
+            </summary>
+    </member>
+    <member name="F:Aspose.BarCodeRecognition.BarCodeReadType.MacroPdf417">
+      <summary>
+            Specifies that the data should be encoded with <b>MacroPdf417</b> barcode specification
+            </summary>
+    </member>
+    <member name="F:Aspose.BarCodeRecognition.BarCodeReadType.MicroPdf417">
+      <summary>
+            Specifies that the data should be encoded with <b>MicroPdf417</b> barcode specification
+            </summary>
+    </member>
+    <member name="F:Aspose.BarCodeRecognition.BarCodeReadType.AustraliaPost">
+      <summary>
+            Represents Australia Post Customer BarCode
+            </summary>
+    </member>
+    <member name="F:Aspose.BarCodeRecognition.BarCodeReadType.Postnet">
+      <summary>
+            Specifies that the data should be encoded with <b>Postnet</b> barcode specification 
+            </summary>
+    </member>
+    <member name="F:Aspose.BarCodeRecognition.BarCodeReadType.Planet">
+      <summary>
+            Specifies that the data should be encoded with <b>Planet</b> barcode specification
+            </summary>
+    </member>
+    <member name="F:Aspose.BarCodeRecognition.BarCodeReadType.OneCode">
+      <summary>
+            Specifies that the data should be encoded with USPS <b>OneCode</b> barcode specification
+            </summary>
+    </member>
+    <member name="F:Aspose.BarCodeRecognition.BarCodeReadType.RM4SCC">
+      <summary>
+            Represents RM4SCC barcode. RM4SCC (Royal Mail 4-state Customer Code) is used for automated mail sort process in UK.
+            </summary>
+    </member>
+    <member name="F:Aspose.BarCodeRecognition.BarCodeReadType.DatabarOmniDirectional">
+      <summary>
+            Represents Databar omni-directional barcode
+            </summary>
+    </member>
+    <member name="F:Aspose.BarCodeRecognition.BarCodeReadType.DatabarTruncated">
+      <summary>
+            Represents Databar truncated barcode
+            </summary>
+    </member>
+    <member name="F:Aspose.BarCodeRecognition.BarCodeReadType.DatabarLimited">
+      <summary>
+            Represents Databar limited barcode, supports recognition only.
+            </summary>
+    </member>
+    <member name="F:Aspose.BarCodeRecognition.BarCodeReadType.DatabarExpanded">
+      <summary>
+            Represents Databar expanded barcode, supports recognition only.
+            </summary>
+    </member>
+    <member name="F:Aspose.BarCodeRecognition.BarCodeReadType.PatchCode">
+      <summary>
+            Represents Patch code barcode(T barcode), supports recognition only.
+            </summary>
+    </member>
+    <member name="F:Aspose.BarCodeRecognition.BarCodeReadType.ISSN">
+      <summary>
+            Specifies that the data should be encoded with <b>ISSN</b> barcode specification 
+            </summary>
+    </member>
+    <member name="F:Aspose.BarCodeRecognition.BarCodeReadType.ISMN">
+      <summary>
+            Specifies that the data should be encoded with <b>ISMN</b> barcode specification 
+            </summary>
+    </member>
+    <member name="F:Aspose.BarCodeRecognition.BarCodeReadType.Supplement">
+      <summary>
+            Specifies that the data should be encoded with <b>Supplement</b> barcode specification 
+            </summary>
+    </member>
+    <member name="F:Aspose.BarCodeRecognition.BarCodeReadType.AustralianPosteParcel">
+      <summary>
+            Specifies that the data should be encoded with <b>Australian Post Domestic eParcel Barcode</b> barcode specification 
+            </summary>
+    </member>
+    <member name="F:Aspose.BarCodeRecognition.BarCodeReadType.SwissPostParcel">
+      <summary>
+            Specifies that the data should be encoded with <b>Swiss Post Parcel Barcode</b> barcode specification. Supported types: Domestic Mail, International Mail, Additional Services (new) 
+            </summary>
+    </member>
+    <member name="F:Aspose.BarCodeRecognition.BarCodeReadType.Code16K">
+      <summary>
+            Specifies that the data should be encoded with <b>Swiss Post Parcel Barcode</b> barcode specification. Supported types: Domestic Mail, International Mail, Additional Services (new) 
+            </summary>
+    </member>
+    <member name="F:Aspose.BarCodeRecognition.BarCodeReadType.AllSupportedTypes">
+      <summary>
+            Specifies that data will be checked with all available symbologies
+            </summary>
+    </member>
+    <member name="T:Aspose.BarCodeRecognition.CustomerInformationInterpretingType">
+      <summary>
+            Defines the interpreting type(CTable or NTable) of customer information for AustralianPost BarCode.
+            </summary>
+    </member>
+    <member name="F:Aspose.BarCodeRecognition.CustomerInformationInterpretingType.CTable">
+      <summary>
+            Use CTable to interpret the customer information
+            </summary>
+    </member>
+    <member name="F:Aspose.BarCodeRecognition.CustomerInformationInterpretingType.NTable">
+      <summary>
+            Use NTable to interpret the customer information
+            </summary>
+    </member>
+    <member name="F:Aspose.BarCodeRecognition.CustomerInformationInterpretingType.Other">
+      <summary>
+            Do not interpret the customer information, return the raw values.
+            </summary>
+    </member>
+    <member name="T:Aspose.BarCodeRecognition.BarCodeReader">
+      <summary>
+            BarCodeReader encapsulates an image which may contain one or several barcodes, it then can perform Read operation to detect barcodes
+            <example>
+            Detect an code39 barcode with supplement
+            <code>
+            [C#]
+            BarCodeReader reader;
+            BarCodeReader reader;
+            reader = new BarCodeReader(@"c:\test.jpg",BarCodeReadType.Code39Standard);
+            while(reader.Read())
+            {
+            Console.WriteLine("BarCode Type: "+reader.GetReadType());
+            Console.WriteLine("BarCode CodeText: " + reader.GetCodeText());
+            }
+            reader.Close();
+            [VB.NET]
+            Dim reader As BarCodeReader
+            reader = New BarCodeReader("c:\test.jpg",BarCodeReadType.Code39Standard)
+            While reader.Read()
+            Console.WriteLine("BarCode Type: " + reader.GetReadType())
+            Console.WriteLine("BarCode CodeText: " + reader.GetCodeText())
+            End While
+            reader.Close()
+            </code></example></summary>
+    </member>
+    <member name="M:Aspose.BarCodeRecognition.BarCodeReader.Close">
+      <summary>
+            Closes barcode reader.
+            </summary>
+    </member>
+    <member name="M:Aspose.BarCodeRecognition.BarCodeReader.Read">
+      <summary>
+            Reads barcode from the image.
+            </summary>
+      <example>
+            Detect AllSupportedTypes
+            <code>
+            [C#]
+            BarCodeReader reader;
+            reader = new BarCodeReader(@"c:\test.jpg");
+            while(reader.Read())
+            {
+                Console.WriteLine("BarCode Type: "+reader.GetReadType());
+                Console.WriteLine("BarCode CodeText: " + reader.GetCodeText());
+            }
+            reader.Close();
+            [VB.NET]
+            Dim reader As BarCodeReader 
+            reader = New BarCodeReader("c:\test.jpg") 
+            While reader.Read() 
+                Console.WriteLine("BarCode Type: " &amp; reader.GetReadType()) 
+                Console.WriteLine("BarCode CodeText: " &amp; reader.GetCodeText()) 
+            End While 
+            reader.Close()
+            </code></example>
+      <returns>True if the next barcode was read successfully; false if there are no more nodes to read.</returns>
+    </member>
+    <member name="M:Aspose.BarCodeRecognition.BarCodeReader.GetCodeText">
+      <summary>
+            Gets the code text.
+            </summary>
+      <returns>The code text of the barcode.</returns>
+    </member>
+    <member name="M:Aspose.BarCodeRecognition.BarCodeReader.GetCodeText(System.Text.Encoding)">
+      <summary>
+            Gets the code text with encoding.
+            </summary>
+      <param name="encoding">The encoding for codetext.</param>
+      <returns>A string containing recognized code text.</returns>
+    </member>
+    <member name="M:Aspose.BarCodeRecognition.BarCodeReader.GetCheckSum">
+      <summary>
+            Gets the checksum for 1D barcodes.
+            </summary>
+      <returns>The checksum for 1D barcode.</returns>
+    </member>
+    <member name="M:Aspose.BarCodeRecognition.BarCodeReader.GetAngle">
+      <summary>
+            Gets the angle of the barcode (0-360). RecognitionHints.Orientation enum does not included into the calculation.
+            </summary>
+      <returns>The angle for barcode (0-360).</returns>
+    </member>
+    <member name="M:Aspose.BarCodeRecognition.BarCodeReader.GetCodeBytes">
+      <summary>
+            Gets the encoded code bytes.
+            </summary>
+      <returns>The code bytes of the barcode.</returns>
+    </member>
+    <member name="M:Aspose.BarCodeRecognition.BarCodeReader.GetMacroPdf417FileID">
+      <summary>
+            Gets the file ID of the barcode, only available with MacroPdf417.
+            </summary>
+      <returns>The file ID for MacroPdf417</returns>
+    </member>
+    <member name="M:Aspose.BarCodeRecognition.BarCodeReader.GetMacroPdf417SegmentID">
+      <summary>
+            Gets the segment ID of the barcode,only available with MacroPdf417.
+            </summary>
+      <returns>The segment ID of the barcode.</returns>
+    </member>
+    <member name="M:Aspose.BarCodeRecognition.BarCodeReader.GetMacroPdf417SegmentsCount">
+      <summary>
+            Gets macro pdf417 barcode segments count. Default value is -1.
+            </summary>
+      <returns>Segments count.</returns>
+    </member>
+    <member name="M:Aspose.BarCodeRecognition.BarCodeReader.GetQRStructuredAppendModeBarCodesQuantity">
+      <summary>
+            Gets the QR structured append mode barcodes quantity. Default value is -1.
+            </summary>
+      <returns>The quantity of the QR structured append mode barcode.</returns>
+    </member>
+    <member name="M:Aspose.BarCodeRecognition.BarCodeReader.GetQRStructuredAppendModeBarCodeIndex">
+      <summary>
+            Gets the index of the QR structured append mode barcode. Index starts from 0. Default value is -1.
+            </summary>
+      <returns>The index of the QR structured append mode barcode.</returns>
+    </member>
+    <member name="M:Aspose.BarCodeRecognition.BarCodeReader.GetQRStructuredAppendModeParityData">
+      <summary>
+            Gets the QR structured append mode parity data. Default value is -1.
+            </summary>
+      <returns>The QR structured append mode parity data.</returns>
+    </member>
+    <member name="M:Aspose.BarCodeRecognition.BarCodeReader.GetRegion">
+      <summary>
+            Gets the barcode region.
+            </summary>
+      <returns>The region of the recognized barcode.</returns>
+    </member>
+    <member name="M:Aspose.BarCodeRecognition.BarCodeReader.GetReadType">
+      <summary>
+            Gets the barcode type.
+            </summary>
+      <returns>The type information of the recognized barcode.</returns>
+    </member>
+    <member name="M:Aspose.BarCodeRecognition.BarCodeReader.GetRecognitionQuality">
+      <summary>
+            Gets the recognition quality. Works for 1D and postal barcodes.
+            </summary>
+      <returns>The recognition quality percent.</returns>
+    </member>
+    <member name="M:Aspose.BarCodeRecognition.BarCodeReader.GetAllPossibleBarCodes">
+      <summary>
+            Gets all possible barcodes found. Only for 1D barcodes. Includes correct answer if the barcode recognized fine.
+            </summary>
+      <returns>The array of possible 1D barcodes. Includes correct answer if the barcode recognized fine.</returns>
+    </member>
+    <member name="M:Aspose.BarCodeRecognition.BarCodeReader.#ctor">
+      <summary>
+            Initializes a new instance of the <see cref="T:Aspose.BarCodeRecognition.BarCodeReader" /> class with default values.
+            Requires to set image (SetBitmapImage()) before to call Read() method.
+            </summary>
+    </member>
+    <member name="M:Aspose.BarCodeRecognition.BarCodeReader.SetBarCodeImage(System.Drawing.Bitmap)">
+      <summary>
+            Sets bitmap image for recognition. 
+            Must be called before Read() method. 
+            </summary>
+      <param name="value">The bitmap image for recognition.</param>
+    </member>
+    <member name="M:Aspose.BarCodeRecognition.BarCodeReader.SetBarCodeImage(System.String)">
+      <summary>
+            Sets image file for recogniton. 
+            Must be called before Read() method. 
+            </summary>
+      <param name="filename">The image file for recogniton.</param>
+    </member>
+    <member name="M:Aspose.BarCodeRecognition.BarCodeReader.SetBarCodeReadType(Aspose.BarCodeRecognition.BarCodeReadType)">
+      <summary>
+            Sets BarCodeReadType for recognition. 
+            Must be called before Read() method. 
+            </summary>
+      <param name="type">The type of barcode to read.</param>
+    </member>
+    <member name="M:Aspose.BarCodeRecognition.BarCodeReader.#ctor(System.Drawing.Bitmap)">
+      <summary>
+            Initializes a new instance of the <see cref="T:Aspose.BarCodeRecognition.BarCodeReader" /> class from an image.
+            </summary>
+      <param name="image">A Bitmap instance containing the image</param>
+    </member>
+    <member name="M:Aspose.BarCodeRecognition.BarCodeReader.#ctor(System.Drawing.Bitmap,Aspose.BarCodeRecognition.BarCodeReadType)">
+      <summary>
+            Initializes a new instance of the <see cref="T:Aspose.BarCodeRecognition.BarCodeReader" /> class.
+            </summary>
+      <param name="image">The image.</param>
+      <param name="type">The BarCodeReadType.</param>
+    </member>
+    <member name="M:Aspose.BarCodeRecognition.BarCodeReader.#ctor(System.Drawing.Bitmap,System.Drawing.Rectangle,Aspose.BarCodeRecognition.BarCodeReadType)">
+      <summary>
+            Initializes a new instance of the <see cref="T:Aspose.BarCodeRecognition.BarCodeReader" /> class.
+            <b>Not support compact framework.</b></summary>
+      <param name="image">The image.</param>
+      <param name="area">The area for recognition.</param>
+      <param name="type">The BarCodeReadType.</param>
+    </member>
+    <member name="M:Aspose.BarCodeRecognition.BarCodeReader.#ctor(System.String)">
+      <summary>
+            Initializes a new instance of the <see cref="T:Aspose.BarCodeRecognition.BarCodeReader" /> class from file.
+            </summary>
+      <param name="filename">The filename.</param>
+    </member>
+    <member name="M:Aspose.BarCodeRecognition.BarCodeReader.#ctor(System.String,Aspose.BarCodeRecognition.BarCodeReadType)">
+      <summary>
+            Initializes a new instance of the <see cref="T:Aspose.BarCodeRecognition.BarCodeReader" /> class.
+            </summary>
+      <param name="filename">The filename.</param>
+      <param name="type">The BarCodeReadType.</param>
+    </member>
+    <member name="M:Aspose.BarCodeRecognition.BarCodeReader.#ctor(System.IO.Stream)">
+      <summary>
+            Initializes a new instance of the <see cref="T:Aspose.BarCodeRecognition.BarCodeReader" /> class.
+            </summary>
+      <param name="stream">The stream.</param>
+    </member>
+    <member name="M:Aspose.BarCodeRecognition.BarCodeReader.#ctor(System.IO.Stream,Aspose.BarCodeRecognition.BarCodeReadType)">
+      <summary>
+            Initializes a new instance of the <see cref="T:Aspose.BarCodeRecognition.BarCodeReader" /> class.
+            </summary>
+      <param name="stream">The stream.</param>
+      <param name="type">The The BarCodeReadType.</param>
+    </member>
+    <member name="M:Aspose.BarCodeRecognition.BarCodeReader.Dispose(System.Boolean)">
+      <summary>
+            Release resource
+            </summary>
+      <param name="disposing">true to release both managed and unmanaged resources; false to release only unmanaged resources.</param>
+    </member>
+    <member name="P:Aspose.BarCodeRecognition.BarCodeReader.IsLicensed">
+      <summary>
+            Gets a value indicating whether recognition module is licensed.
+            </summary>
+      <value>
+        <c>true</c> if recognition module is licensed; otherwise, <c>false</c>.
+            </value>
+    </member>
+    <member name="P:Aspose.BarCodeRecognition.BarCodeReader.Timeout">
+      <summary>
+            Gets or sets the timeout of recognition process.
+            </summary>
+      <value>
+            The timeout.
+            </value>
+    </member>
+    <member name="P:Aspose.BarCodeRecognition.BarCodeReader.ChecksumValidation">
+      <summary>
+        <para>Enable checksum validation during recognition for 1D barcodes.</para>
+        <para>Default is treated as Yes for symbologies which must contain checksum, as No where checksum only possible.</para>
+        <para>Checksum never used: Codabar</para>
+        <para>Checksum is possible: Code39 Standard/Extended, Standard2of5, Interleaved2of5, Matrix2of5, ItalianPost25, DeutschePostIdentcode, DeutschePostLeitcode, VIN</para>
+        <para>Checksum always used: Rest symbologies</para>
+      </summary>
+      <value>
+            The checksum validation flag.
+            </value>
+    </member>
+    <member name="P:Aspose.BarCodeRecognition.BarCodeReader.MedianSmoothingWindowSize">
+      <summary>
+            Gets or sets the median smoothing window size. Typical values are 3 or 4. Default value is 3. Recognition hint MedianSmoothing must be set.
+            </summary>
+      <value>
+            The median smoothing window size. Typical values are 3 or 4. Default value is 3.
+            </value>
+    </member>
+    <member name="P:Aspose.BarCodeRecognition.BarCodeReader.ExpectedBarCodeCount">
+      <summary>
+            Expected barcodes to be found.The reader will stop reading the image once it found barcodes more than this value.
+            Default value is int.MaxValue.
+            </summary>
+    </member>
+    <member name="P:Aspose.BarCodeRecognition.BarCodeReader.StripFNC">
+      <summary>
+            Strip FNC1, FNC2, FNC3 characters from codetext. Default value is false.
+            </summary>
+    </member>
+    <member name="P:Aspose.BarCodeRecognition.BarCodeReader.CustomerInformationInterpretingType">
+      <summary>
+            Gets or sets the Interpreting Type for the Customer Information of AustralianPost BarCode.Default is CustomerInformationInterpretingType.Other.
+            </summary>
+    </member>
+    <member name="P:Aspose.BarCodeRecognition.BarCodeReader.OrientationHints">
+      <summary>
+            Gets or sets the orientation hints.
+            </summary>
+      <value>
+            The orientation hints. Default value is NoRotate.
+            </value>
+    </member>
+    <member name="P:Aspose.BarCodeRecognition.BarCodeReader.ImageBinarizationHints">
+      <summary>
+            Gets or sets the image binarization hints.
+            </summary>
+      <value>
+            The image binarization hints. Default value is None.
+            </value>
+    </member>
+    <member name="T:Aspose.BarCodeRecognition.BarCodeReader.PossibleBarCode">
+      <summary>
+            Describes possible barcode found. Maybe incorrectly.
+            </summary>
+    </member>
+    <member name="P:Aspose.BarCodeRecognition.BarCodeReader.PossibleBarCode.BarCodeReadType">
+      <summary>
+            Gets the type of the symbology read.
+            </summary>
+      <value>
+            The type of the symbology read.
+            </value>
+    </member>
+    <member name="P:Aspose.BarCodeRecognition.BarCodeReader.PossibleBarCode.Codetext">
+      <summary>
+            Gets the codetext.
+            </summary>
+    </member>
+    <member name="P:Aspose.BarCodeRecognition.BarCodeReader.PossibleBarCode.RecognitionQuality">
+      <summary>
+            Gets the recognition quality percent.
+            </summary>
+    </member>
+    <member name="P:Aspose.BarCodeRecognition.BarCodeReader.PossibleBarCode.Region">
+      <summary>
+            Gets the region where the barcode potentially found.
+            </summary>
+    </member>
+    <member name="P:Aspose.BarCodeRecognition.BarCodeReader.PossibleBarCode.Angle">
+      <summary>
+            Gets the barcode's angle.
+            </summary>
+    </member>
+    <member name="T:Aspose.BarCodeRecognition.RecognitionHints">
+      <summary>
+            Set recognition hints here.
+            </summary>
+    </member>
+    <member name="T:Aspose.BarCodeRecognition.RecognitionHints.Orientation">
+      <summary>
+            Orientation hints.
+            </summary>
+    </member>
+    <member name="F:Aspose.BarCodeRecognition.RecognitionHints.Orientation.NoRotate">
+      <summary>
+            No rotation.
+            </summary>
+    </member>
+    <member name="F:Aspose.BarCodeRecognition.RecognitionHints.Orientation.Rotate90">
+      <summary>
+            Rotate image by 90 degress clockwise.
+            </summary>
+    </member>
+    <member name="F:Aspose.BarCodeRecognition.RecognitionHints.Orientation.Rotate180">
+      <summary>
+            Rotate image by 180 degress clockwise.
+            </summary>
+    </member>
+    <member name="F:Aspose.BarCodeRecognition.RecognitionHints.Orientation.Rotate270">
+      <summary>
+            Rotate image by 270 degress clockwise.
+            </summary>
+    </member>
+    <member name="T:Aspose.BarCodeRecognition.RecognitionHints.ImageBinarization">
+      <summary>
+            Image binarization hints.
+            </summary>
+    </member>
+    <member name="F:Aspose.BarCodeRecognition.RecognitionHints.ImageBinarization.None">
+      <summary>
+            Default value used.
+            </summary>
+    </member>
+    <member name="F:Aspose.BarCodeRecognition.RecognitionHints.ImageBinarization.Grayscale">
+      <summary>
+            Grayscale.
+            </summary>
+    </member>
+    <member name="F:Aspose.BarCodeRecognition.RecognitionHints.ImageBinarization.MedianSmoothing">
+      <summary>
+            Median smoothing. Works with BarcodeReader's MedianSmoothingWindowSize property.
+            </summary>
+    </member>
+    <member name="F:Aspose.BarCodeRecognition.RecognitionHints.ImageBinarization.InvertImage">
+      <summary>
+            Invert image.
+            </summary>
+    </member>
+    <member name="F:Aspose.BarCodeRecognition.RecognitionHints.ImageBinarization.ComplexBackground">
+      <summary>
+            Background analyze. Useful with complex or colored background.
+            </summary>
+    </member>
+    <member name="T:Aspose.BarCodeRecognition.BarCodeRecognitionException">
+      <summary>
+            General exception thrown by BarCodeReader, inherited from BarCodeException
+            </summary>
+    </member>
+    <member name="M:Aspose.BarCodeRecognition.BarCodeRecognitionException.#ctor(System.String)">
+      <summary>
+            Initializes a new instance of the <see cref="T:Aspose.BarCodeRecognition.BarCodeRecognitionException" /> class.
+            </summary>
+      <param name="message">error message</param>
+    </member>
+    <member name="M:Aspose.BarCodeRecognition.BarCodeRecognitionException.#ctor(System.String,System.Exception)">
+      <summary>
+            Initializes a new instance of the <see cref="T:Aspose.BarCodeRecognition.BarCodeRecognitionException" /> class with the specified error message and the current exception.
+            </summary>
+      <param name="message">The error message of the exception.</param>
+      <param name="innerException">The current exception is thrown.</param>
+    </member>
+    <member name="T:Aspose.BarCodeRecognition.BarCodeRegion">
+      <summary>
+            Represents the barcode's region
+            <example>
+            Draw edges of the barcode region, then fill it.
+            <code>
+            [C#]
+            BarCodeReader reader;
+            reader = new BarCodeReader(@"c:\test.jpg",BarCodeReadType.Code39Standard);
+            int counter = 0;
+            while(reader.Read())
+            {
+                Console.WriteLine("BarCode Type: "+reader.GetReadType());
+                Console.WriteLine("BarCode CodeText: " + reader.GetCodeText());
+                BarCodeRegion region = reader.GetRegion();
+                if(region != null)
+                {
+                    Image img = System.Drawing.Image.FromFile(file);
+                    Graphics g = Graphics.FromImage(img);
+                    region.DrawBarCodeEdges(g,new Pen(Color.Red,1f));
+                    img.Save(string.Format(@".\edge_{0}.png" ,counter++));
+                    region.FillBarCodeRegion(g,Brushes.Green);
+                    img.Save(string.Format(@".\fill_{0}.png", counter++));
+                }
+            }
+            reader.Close();
+            [VB.NET]
+            Dim reader As BarCodeReader
+            reader = New BarCodeReader("c:\test.jpg", BarCodeReadType.Code39Standard)
+            Dim counter As Integer
+            While reader.Read()
+                counter = counter + 1
+                Console.WriteLine("BarCode Type: " + reader.GetReadType().ToString)
+                Console.WriteLine("BarCode CodeText: " + reader.GetCodeText())
+                Dim region As BarCodeRegion
+                region = reader.GetRegion()
+                If Not region Is Nothing Then
+                    Dim img As Image = System.Drawing.Image.FromFile("c:\test.jpg")
+                    Dim g As Graphics = Graphics.FromImage(img)
+                    region.DrawBarCodeEdges(g, New Pen(Color.Red, 1.0F))
+                    img.Save(String.Format(".\edge_{0}.png", counter))
+                    region.FillBarCodeRegion(g, Brushes.Green)
+                    img.Save(String.Format(".\fill_{0}.png", counter))
+                End If
+            End While
+            reader.Close()
+            </code></example></summary>
+    </member>
+    <member name="M:Aspose.BarCodeRecognition.BarCodeRegion.DrawBarCodeEdges(System.Drawing.Graphics,System.Drawing.Pen)">
+      <summary>
+            Draws the bar code edges.
+            </summary>
+      <param name="g">The graphics.</param>
+      <param name="pen">Pen that determines the color, width, and style of the polygon.</param>
+    </member>
+    <member name="M:Aspose.BarCodeRecognition.BarCodeRegion.FillBarCodeRegion(System.Drawing.Graphics,System.Drawing.Brush)">
+      <summary>
+            Fills the bar code region.
+            </summary>
+      <param name="g">The graphics.</param>
+      <param name="brush">The brush.</param>
+    </member>
+    <member name="P:Aspose.BarCodeRecognition.BarCodeRegion.Points">
+      <summary>
+            Gets the points of the region.
+            </summary>
+    </member>
+  </members>
+</doc>

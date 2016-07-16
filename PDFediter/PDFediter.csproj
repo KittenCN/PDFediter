@@ -36,17 +36,17 @@
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Aspose.Pdf, Version=8.9.0.0, Culture=neutral, PublicKeyToken=00725b1ceb58d0a9, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>DLL\Aspose.Pdf.dll</HintPath>
+    </Reference>
+    <Reference Include="Aspose.Words, Version=14.1.0.0, Culture=neutral, PublicKeyToken=00725b1ceb58d0a9, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>DLL\Aspose.Words.dll</HintPath>
+    </Reference>
     <Reference Include="ICSharpCode.SharpZipLib, Version=0.5.0.0, Culture=neutral, PublicKeyToken=1b03e6acf1164f73">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>DLL\ICSharpCode.SharpZipLib.dll</HintPath>
-    </Reference>
-    <Reference Include="Spire.Doc, Version=5.7.54.3040, Culture=neutral, PublicKeyToken=663f351905198cb3, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>DLL\Spire.Doc.dll</HintPath>
-    </Reference>
-    <Reference Include="Spire.Pdf, Version=3.7.132.3040, Culture=neutral, PublicKeyToken=663f351905198cb3, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>DLL\Spire.Pdf.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -58,14 +58,17 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CMDHelper.cs" />
+    <Compile Include="IO.cs" />
     <Compile Include="PDFediter.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="PDFediter.Designer.cs">
       <DependentUpon>PDFediter.cs</DependentUpon>
     </Compile>
+    <Compile Include="PDFHelper.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="WordHelper.cs" />
     <EmbeddedResource Include="PDFediter.resx">
       <DependentUpon>PDFediter.cs</DependentUpon>
     </EmbeddedResource>
@@ -86,6 +89,7 @@
     <None Include="bin\Debug\tempPDF\ccl3.xps" />
     <None Include="bin\Debug\tempPDF\ccl3_Deleted.doc" />
     <None Include="bin\Debug\tempPDF\demo1.doc" />
+    <None Include="DLL\Aspose.Total.lic" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -140,16 +144,42 @@
     <Content Include="bin\Debug\tempPDF\个人信用报告s.html" />
     <Content Include="bin\Debug\tempPDF\个人信用报告_ind.html" />
     <Content Include="CMD\pdftohtml.exe" />
+    <Content Include="DLL\Aspose.BarCode.dll" />
+    <Content Include="DLL\Aspose.BarCode.Silverlight.dll" />
+    <Content Include="DLL\Aspose.BarCode.Silverlight.xml" />
+    <Content Include="DLL\Aspose.BarCode.WPF.dll" />
+    <Content Include="DLL\Aspose.BarCode.WPF.xml" />
+    <Content Include="DLL\Aspose.BarCode.xml" />
+    <Content Include="DLL\Aspose.BarCodeRecognition.dll" />
+    <Content Include="DLL\Aspose.BarCodeRecognition.Silverlight.dll" />
+    <Content Include="DLL\Aspose.BarCodeRecognition.Silverlight.xml" />
+    <Content Include="DLL\Aspose.BarCodeRecognition.xml" />
+    <Content Include="DLL\Aspose.Cells.dll" />
+    <Content Include="DLL\Aspose.Diagram.dll" />
+    <Content Include="DLL\Aspose.Diagram.xml" />
+    <Content Include="DLL\Aspose.Email.dll" />
+    <Content Include="DLL\Aspose.Email.xml" />
+    <Content Include="DLL\Aspose.Imaging.dll" />
+    <Content Include="DLL\Aspose.Imaging.xml" />
+    <Content Include="DLL\Aspose.OCR.dll" />
+    <Content Include="DLL\Aspose.OCR.xml" />
+    <Content Include="DLL\Aspose.OMR.dll" />
+    <Content Include="DLL\Aspose.OMR.xml" />
+    <Content Include="DLL\Aspose.Pdf.dll" />
+    <Content Include="DLL\Aspose.Pdf.xml" />
+    <Content Include="DLL\Aspose.Slides.dll" />
+    <Content Include="DLL\Aspose.Slides.xml" />
+    <Content Include="DLL\Aspose.Tasks.dll" />
+    <Content Include="DLL\Aspose.Tasks.xml" />
+    <Content Include="DLL\Aspose.Words.dll" />
     <Content Include="DLL\ICSharpCode.SharpZipLib.dll" />
-    <Content Include="DLL\Spire.Doc.dll">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="DLL\Spire.License.dll">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="DLL\Spire.Pdf.dll">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
+    <Content Include="DLL\license.elic.xml" />
+    <Content Include="DLL\Spire.Doc.dll" />
+    <Content Include="DLL\Spire.Doc.XML" />
+    <Content Include="DLL\Spire.License.dll" />
+    <Content Include="DLL\Spire.License.xml" />
+    <Content Include="DLL\Spire.Pdf.dll" />
+    <Content Include="DLL\Spire.Pdf.XML" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="bin\Release\" />
