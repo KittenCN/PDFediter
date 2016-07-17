@@ -12,9 +12,18 @@ namespace PDFediter
     {
         public static void PDFReplacePIC(string strInAddress,int intIndex,string strPicAddress,string strOutAddress)
         {
+            string outputFileedit = "";
             IO.checkDir(Path.GetDirectoryName(strOutAddress).ToString());
             string inname = Path.GetFileNameWithoutExtension(strInAddress);
-            string outputFileedit = strOutAddress.ToString() + "\\" + inname + ".pdf";
+            if (strOutAddress.Substring(strOutAddress.Length - 1, 1).ToString() != "\\")
+            {
+                outputFileedit = strOutAddress.ToString() + "\\" + inname + ".pdf";
+            }
+            else
+            {
+                outputFileedit = strOutAddress.ToString() + inname + ".pdf";
+            }
+            //string outputFileedit = strOutAddress.ToString() + "\\" + inname + ".pdf";
 
             Document pdfDocument = new Document(strInAddress);
             FileStream fs = new FileStream(strPicAddress, FileMode.Open);
@@ -25,10 +34,17 @@ namespace PDFediter
 
         public static void ConvertPDFtoDOCX(string strInAddress, string strOutAddress)
         {
+            string outputFile = "";
             IO.checkDir(Path.GetDirectoryName(strOutAddress).ToString());
             string inname = Path.GetFileNameWithoutExtension(strInAddress);
-            string outputFile = strOutAddress.ToString() + "\\" + inname + ".docx";
-
+            if(strOutAddress.Substring(strOutAddress.Length-1,1).ToString()!="\\")
+            {
+                outputFile = strOutAddress.ToString() + "\\" + inname + ".docx";
+            }
+            else
+            {
+                outputFile = strOutAddress.ToString() + inname + ".docx";
+            }
             Document pdfDocument = new Document(strInAddress);
             pdfDocument.Save(outputFile, SaveFormat.DocX);
         }

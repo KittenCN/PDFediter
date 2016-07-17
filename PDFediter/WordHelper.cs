@@ -13,9 +13,18 @@ namespace PDFediter
     {
         public static void ReplaceText(string strInAddress,string SourceText,string ReplaceText,string strOutAddress)
         {
+            string outputFile = "";
             IO.checkDir(Path.GetDirectoryName(strOutAddress).ToString());
             string inname = Path.GetFileNameWithoutExtension(strInAddress);
-            string outputFile = strOutAddress.ToString() + "\\" + inname + ".docx";
+            //string outputFile = strOutAddress.ToString() + "\\" + inname + ".docx";
+            if (strOutAddress.Substring(strOutAddress.Length -1,1).ToString() != "\\")
+            {
+                outputFile = strOutAddress.ToString() + "\\" + inname + ".docx";
+            }
+            else
+            {
+                outputFile = strOutAddress.ToString() + inname + ".docx";
+            }
 
             Document doc = new Document(strInAddress.ToString());
             doc.Range.Replace(SourceText, ReplaceText, false, false);
@@ -24,10 +33,18 @@ namespace PDFediter
 
         public static void ReplacePIC(string strInAddress, int intIndex, string strPicAddress, string strOutAddress)
         {
+            string outputFileedit = "";
             IO.checkDir(Path.GetDirectoryName(strOutAddress).ToString());
             string inname = Path.GetFileNameWithoutExtension(strInAddress);
-            string outputFileedit = strOutAddress.ToString() + "\\" + inname + ".docx";
-
+            //string outputFileedit = strOutAddress.ToString() + "\\" + inname + ".docx";
+            if (strOutAddress.Substring(strOutAddress.Length -1,1).ToString() != "\\")
+            {
+                outputFileedit = strOutAddress.ToString() + "\\" + inname + ".docx";
+            }
+            else
+            {
+                outputFileedit = strOutAddress.ToString() + inname + ".docx";
+            }
             Document doc = new Document(strInAddress);
             DocumentBuilder builder = new DocumentBuilder(doc);
             NodeCollection shapes = doc.GetChildNodes(NodeType.Shape, true);
@@ -45,10 +62,18 @@ namespace PDFediter
 
         public static void ReplacePICtoText(string strInAddress, int intIndex ,string ReplaceText,string strOutAddress)
         {
+            string outputFileedit = "";
             IO.checkDir(Path.GetDirectoryName(strOutAddress).ToString());
             string inname = Path.GetFileNameWithoutExtension(strInAddress);
-            string outputFileedit = strOutAddress.ToString() + "\\" + inname + ".docx";
-
+            //string outputFileedit = strOutAddress.ToString() + "\\" + inname + ".docx";
+            if (strOutAddress.Substring(strOutAddress.Length -1,1).ToString() != "\\")
+            {
+                outputFileedit = strOutAddress.ToString() + "\\" + inname + ".docx";
+            }
+            else
+            {
+                outputFileedit = strOutAddress.ToString() + inname + ".docx";
+            }
             Document doc = new Document(strInAddress);
             DocumentBuilder builder = new DocumentBuilder(doc);
 
@@ -69,10 +94,18 @@ namespace PDFediter
 
         public static void ConvertDOCXtoPDF(string strInAddress,string strOutAddress)
         {
+            string outputFileedit = "";
             IO.checkDir(Path.GetDirectoryName(strOutAddress).ToString());
             string inname = Path.GetFileNameWithoutExtension(strInAddress);
-            string outputFileedit = strOutAddress.ToString() + "\\" + inname + ".pdf";
-
+            //string outputFileedit = strOutAddress.ToString() + "\\" + inname + ".pdf";
+            if (strOutAddress.Substring(strOutAddress.Length -1,1).ToString() != "\\")
+            {
+                outputFileedit = strOutAddress.ToString() + "\\" + inname + ".pdf";
+            }
+            else
+            {
+                outputFileedit = strOutAddress.ToString() + inname + ".pdf";
+            }
             Document doc = new Document(strInAddress);
             doc.Save(outputFileedit, SaveFormat.Pdf);
         }

@@ -360,14 +360,14 @@ namespace PDFediter
             string strSQL = "select id,InAddress,OutAddress from tabOperation where Flag='1' order by id";
             DataTable dtSQL = ah.ReturnDataTable(strSQL);
             dgvMain.DataSource = dtSQL;
-            if (dtSQL.Rows.Count>0)
-            {               
+            if (dtSQL.Rows.Count > 0)
+            {
                 strSQL = "select ID,OID,OperationType,PicAddress,IntIndex,SourceText,ReplaceText,OFlag from tabActionDetail where oflag='1' and oid=" + int.Parse(dgvMain.CurrentRow.Cells["id"].Value.ToString());
                 dtSQL = ah.ReturnDataTable(strSQL);
                 dgvActionDetail.DataSource = dtSQL;
                 dgvActionDetail.Columns[0].Visible = false;
                 dgvMain.CurrentCell = dgvMain.Rows[intCurrentRow].Cells["源地址"];
-                dgvMain.Rows[intCurrentRow].Selected = true;               
+                dgvMain.Rows[intCurrentRow].Selected = true;
                 ReflashData();
             }
         }
@@ -494,32 +494,32 @@ namespace PDFediter
                 DataTable dtSQL = ah.ReturnDataTable(strSQL);
                 dgvActionDetail.DataSource = dtSQL;
                 ReflashData();
+                strInAddress = dgvMain.Rows[x].Cells["源地址"].Value.ToString();
+                strOutAddress = dgvMain.Rows[x].Cells["目标地址"].Value.ToString();
+                strTempAddress = strInAddress + @"\tempout\";
                 if (dtSQL.Rows.Count > 0)
                 {
-                    for (int y = 0; y < dtSQL.Rows.Count; y++)
+                    IO.checkDir(strInAddress);
+                    DirectoryInfo dir = new DirectoryInfo(strInAddress);
+                    FileInfo[] inf = dir.GetFiles();
+                    foreach (FileInfo finf in inf)
                     {
-                        strInAddress = dgvMain.Rows[x].Cells["源地址"].Value.ToString();
-                        strOutAddress = dgvMain.Rows[x].Cells["目标地址"].Value.ToString();
-                        strTempAddress = strInAddress + @"\tempout\";
-                        if (y != dtSQL.Rows.Count - 1)
+                        if (finf.Extension.Equals(".pdf"))
                         {
-                            strCurrentAddress = strTempAddress;
-                        }
-                        else
-                        {
-                            strCurrentAddress = strOutAddress;
-                        }
-                        if (y != 0) { strInAddress = strTempAddress; }
-                        IO.checkDir(strInAddress);
-                        DirectoryInfo dir = new DirectoryInfo(strInAddress);
-                        FileInfo[] inf = dir.GetFiles();
-                        foreach (FileInfo finf in inf)
-                        {
-                            if (finf.Extension.Equals(".pdf"))
-                            {
-                                string inname = Path.GetFileNameWithoutExtension(finf.FullName.ToString());
-                                string docxFile = strTempAddress + inname + ".docx";
-                                PDFHelper.ConvertPDFtoDOCX(finf.FullName.ToString(), strTempAddress);
+                            string inname = Path.GetFileNameWithoutExtension(finf.FullName.ToString());
+                            string docxFile = strTempAddress + inname + ".docx";
+                            PDFHelper.ConvertPDFtoDOCX(finf.FullName.ToString(), strTempAddress);
+                            for (int y = 0; y < dtSQL.Rows.Count; y++)
+                            {                               
+                                if (y != dtSQL.Rows.Count - 1)
+                                {
+                                    strCurrentAddress = strTempAddress;
+                                }
+                                else
+                                {
+                                    strCurrentAddress = strOutAddress;
+                                }
+                                if (y != 0) { strInAddress = strTempAddress; }                                                                
                                 switch (dgvActionDetail.Rows[y].Cells["操作类型"].Value.ToString())
                                 {
                                     case "替换图片":
@@ -541,9 +541,9 @@ namespace PDFediter
                                             break;
                                         }
                                 }
-                                WordHelper.ConvertDOCXtoPDF(docxFile, strCurrentAddress);
-                                System.Threading.Thread.Sleep(5000);
                             }
+                            WordHelper.ConvertDOCXtoPDF(docxFile, strCurrentAddress);
+                            System.Threading.Thread.Sleep(3000);
                         }
                     }
                 }
