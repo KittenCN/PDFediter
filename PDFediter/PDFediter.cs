@@ -360,12 +360,16 @@ namespace PDFediter
             string strSQL = "select id,InAddress,OutAddress from tabOperation where Flag='1' order by id";
             DataTable dtSQL = ah.ReturnDataTable(strSQL);
             dgvMain.DataSource = dtSQL;
-            strSQL = "select ID,OID,OperationType,PicAddress,IntIndex,SourceText,ReplaceText,OFlag from tabActionDetail where oflag='1' and oid=" + int.Parse(dgvMain.CurrentRow.Cells["id"].Value.ToString());
-            dtSQL = ah.ReturnDataTable(strSQL);
-            dgvActionDetail.DataSource = dtSQL;
-            dgvActionDetail.Columns[0].Visible = false;
-            dgvMain.Rows[intCurrentRow].Selected = true;
-            ReflashData();
+            if (dtSQL.Rows.Count>0)
+            {               
+                strSQL = "select ID,OID,OperationType,PicAddress,IntIndex,SourceText,ReplaceText,OFlag from tabActionDetail where oflag='1' and oid=" + int.Parse(dgvMain.CurrentRow.Cells["id"].Value.ToString());
+                dtSQL = ah.ReturnDataTable(strSQL);
+                dgvActionDetail.DataSource = dtSQL;
+                dgvActionDetail.Columns[0].Visible = false;
+                dgvMain.CurrentCell = dgvMain.Rows[intCurrentRow].Cells[2];
+                dgvMain.Rows[intCurrentRow].Selected = true;               
+                ReflashData();
+            }
         }
 
         private void ReflashData()
@@ -468,6 +472,7 @@ namespace PDFediter
                 //strSQL = strSQL + " OperationType='" + cbOperationType.SelectedIndex.ToString() + "',InAddress='" + tbInAddress.Text + "',OutAddress='" + tbOutAddress.Text + "',PicAddress='" + tbPicAddress.Text + "',IntIndex='" + tbIntIndex.Text + "',SourceText='" + tbSourceText.Text + "',ReplaceText='" + tbReplaceText.Text + "' ";
                 strSQL = strSQL + " Flag='0' where id=" + dgvMain.CurrentRow.Cells["id"].Value.ToString();
                 ah.ExecuteNonQuery(strSQL);
+                intCurrentRow = intCurrentRow - 1;
                 FlashData();
             }
         }

@@ -83,13 +83,8 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-    <None Include="bin\Debug\PDFediter.exe.config" />
     <None Include="bin\Debug\PDFediter.vshost.exe.config" />
     <None Include="bin\Debug\PDFediter.vshost.exe.manifest" />
-    <None Include="bin\Debug\tempPDF\ccl3.doc" />
-    <None Include="bin\Debug\tempPDF\ccl3.xps" />
-    <None Include="bin\Debug\tempPDF\ccl3_Deleted.doc" />
-    <None Include="bin\Debug\tempPDF\demo1.doc" />
     <None Include="DB\BaseData.ldb" />
     <None Include="DLL\Aspose.Total.lic" />
     <None Include="Properties\Settings.settings">
@@ -106,46 +101,7 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="bin\Debug\bcmail-jdk15-1.44.dll" />
-    <Content Include="bin\Debug\bcprov-jdk15-1.44.dll" />
-    <Content Include="bin\Debug\CMD\pdftohtml.exe" />
-    <Content Include="bin\Debug\commons-logging.dll" />
-    <Content Include="bin\Debug\DocX.dll" />
-    <Content Include="bin\Debug\fontbox-1.8.2.dll" />
-    <Content Include="bin\Debug\ICSharpCode.SharpZipLib.dll" />
-    <Content Include="bin\Debug\icu4j-3.8.dll" />
-    <Content Include="bin\Debug\IKVM.OpenJDK.Beans.dll" />
-    <Content Include="bin\Debug\IKVM.OpenJDK.Charsets.dll" />
-    <Content Include="bin\Debug\IKVM.OpenJDK.Corba.dll" />
-    <Content Include="bin\Debug\IKVM.OpenJDK.Core.dll" />
-    <Content Include="bin\Debug\IKVM.OpenJDK.Jdbc.dll" />
-    <Content Include="bin\Debug\IKVM.OpenJDK.Management.dll" />
-    <Content Include="bin\Debug\IKVM.OpenJDK.Media.dll" />
-    <Content Include="bin\Debug\IKVM.OpenJDK.Misc.dll" />
-    <Content Include="bin\Debug\IKVM.OpenJDK.Naming.dll" />
-    <Content Include="bin\Debug\IKVM.OpenJDK.Remoting.dll" />
-    <Content Include="bin\Debug\IKVM.OpenJDK.Security.dll" />
-    <Content Include="bin\Debug\IKVM.OpenJDK.SwingAWT.dll" />
-    <Content Include="bin\Debug\IKVM.OpenJDK.Text.dll" />
-    <Content Include="bin\Debug\IKVM.OpenJDK.Util.dll" />
-    <Content Include="bin\Debug\IKVM.OpenJDK.XML.API.dll" />
-    <Content Include="bin\Debug\IKVM.Runtime.dll" />
-    <Content Include="bin\Debug\IKVM.Runtime.JNI.dll" />
-    <Content Include="bin\Debug\itextsharp.dll" />
-    <Content Include="bin\Debug\jempbox-1.8.2.dll" />
-    <Content Include="bin\Debug\junit.dll" />
-    <Content Include="bin\Debug\Microsoft.mshtml.dll" />
-    <Content Include="bin\Debug\pdfbox-1.8.2.dll" />
-    <Content Include="bin\Debug\PDFediter.exe" />
-    <Content Include="bin\Debug\PDFediter.pdb" />
     <Content Include="bin\Debug\PDFediter.vshost.exe" />
-    <Content Include="bin\Debug\SautinSoft.PdfFocus.dll" />
-    <Content Include="bin\Debug\Spire.License.dll" />
-    <Content Include="bin\Debug\Spire.Pdf.dll" />
-    <Content Include="bin\Debug\tempPDF\个人信用报告.html" />
-    <Content Include="bin\Debug\tempPDF\个人信用报告s.html" />
-    <Content Include="bin\Debug\tempPDF\个人信用报告_ind.html" />
-    <Content Include="CMD\pdftohtml.exe" />
     <Content Include="DB\BaseData.mdb">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
