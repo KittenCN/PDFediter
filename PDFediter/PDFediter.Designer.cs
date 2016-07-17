@@ -36,15 +36,6 @@
             this.btnDOCXtoPDF = new System.Windows.Forms.Button();
             this.gb_test = new System.Windows.Forms.GroupBox();
             this.dgvMain = new System.Windows.Forms.DataGridView();
-            this.操作类型 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.源地址 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.目标地址 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.图片地址 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.图片索引 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.源字段 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.替换字段 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.FLag = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.id = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cbOperationType = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -66,8 +57,24 @@
             this.btnUpdate = new System.Windows.Forms.Button();
             this.btnDelete = new System.Windows.Forms.Button();
             this.btnRun = new System.Windows.Forms.Button();
+            this.dgvActionDetail = new System.Windows.Forms.DataGridView();
+            this.操作类型 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.源地址 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.目标地址 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.FLag = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.id = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.图片地址 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.图片索引 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.源字段 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.替换字段 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.OID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.OFlag = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.btnADDelete = new System.Windows.Forms.Button();
+            this.btnADEdit = new System.Windows.Forms.Button();
+            this.btnADAdd = new System.Windows.Forms.Button();
             this.gb_test.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvMain)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvActionDetail)).BeginInit();
             this.SuspendLayout();
             // 
             // btnConverttoWord
@@ -154,10 +161,6 @@
             this.操作类型,
             this.源地址,
             this.目标地址,
-            this.图片地址,
-            this.图片索引,
-            this.源字段,
-            this.替换字段,
             this.FLag,
             this.id});
             this.dgvMain.Location = new System.Drawing.Point(13, 13);
@@ -165,9 +168,212 @@
             this.dgvMain.Name = "dgvMain";
             this.dgvMain.ReadOnly = true;
             this.dgvMain.RowTemplate.Height = 23;
-            this.dgvMain.Size = new System.Drawing.Size(748, 402);
+            this.dgvMain.Size = new System.Drawing.Size(344, 402);
             this.dgvMain.TabIndex = 8;
             this.dgvMain.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvMain_CellContentClick);
+            // 
+            // cbOperationType
+            // 
+            this.cbOperationType.FormattingEnabled = true;
+            this.cbOperationType.Location = new System.Drawing.Point(914, 16);
+            this.cbOperationType.Name = "cbOperationType";
+            this.cbOperationType.Size = new System.Drawing.Size(171, 20);
+            this.cbOperationType.TabIndex = 9;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(837, 19);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(59, 12);
+            this.label1.TabIndex = 10;
+            this.label1.Text = "操作类型:";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(837, 45);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(47, 12);
+            this.label2.TabIndex = 11;
+            this.label2.Text = "源地址:";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(837, 72);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(59, 12);
+            this.label3.TabIndex = 12;
+            this.label3.Text = "目标地址:";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(837, 191);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(59, 12);
+            this.label4.TabIndex = 13;
+            this.label4.Text = "图片地址:";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(837, 218);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(59, 12);
+            this.label5.TabIndex = 14;
+            this.label5.Text = "图片索引:";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(837, 242);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(47, 12);
+            this.label6.TabIndex = 15;
+            this.label6.Text = "源字段:";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(837, 269);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(59, 12);
+            this.label7.TabIndex = 16;
+            this.label7.Text = "替换字段:";
+            // 
+            // tbInAddress
+            // 
+            this.tbInAddress.Location = new System.Drawing.Point(914, 42);
+            this.tbInAddress.Name = "tbInAddress";
+            this.tbInAddress.Size = new System.Drawing.Size(171, 21);
+            this.tbInAddress.TabIndex = 17;
+            // 
+            // tbOutAddress
+            // 
+            this.tbOutAddress.Location = new System.Drawing.Point(914, 69);
+            this.tbOutAddress.Name = "tbOutAddress";
+            this.tbOutAddress.Size = new System.Drawing.Size(171, 21);
+            this.tbOutAddress.TabIndex = 18;
+            // 
+            // tbPicAddress
+            // 
+            this.tbPicAddress.Location = new System.Drawing.Point(914, 188);
+            this.tbPicAddress.Name = "tbPicAddress";
+            this.tbPicAddress.Size = new System.Drawing.Size(171, 21);
+            this.tbPicAddress.TabIndex = 19;
+            // 
+            // tbIntIndex
+            // 
+            this.tbIntIndex.Location = new System.Drawing.Point(914, 215);
+            this.tbIntIndex.Name = "tbIntIndex";
+            this.tbIntIndex.Size = new System.Drawing.Size(171, 21);
+            this.tbIntIndex.TabIndex = 20;
+            // 
+            // tbSourceText
+            // 
+            this.tbSourceText.Location = new System.Drawing.Point(914, 239);
+            this.tbSourceText.Name = "tbSourceText";
+            this.tbSourceText.Size = new System.Drawing.Size(171, 21);
+            this.tbSourceText.TabIndex = 21;
+            // 
+            // tbReplaceText
+            // 
+            this.tbReplaceText.Location = new System.Drawing.Point(914, 266);
+            this.tbReplaceText.Name = "tbReplaceText";
+            this.tbReplaceText.Size = new System.Drawing.Size(171, 21);
+            this.tbReplaceText.TabIndex = 22;
+            // 
+            // btnInAddress
+            // 
+            this.btnInAddress.Location = new System.Drawing.Point(1092, 40);
+            this.btnInAddress.Name = "btnInAddress";
+            this.btnInAddress.Size = new System.Drawing.Size(33, 23);
+            this.btnInAddress.TabIndex = 23;
+            this.btnInAddress.Text = "...";
+            this.btnInAddress.UseVisualStyleBackColor = true;
+            this.btnInAddress.Click += new System.EventHandler(this.btnInAddress_Click);
+            // 
+            // btnOutAddress
+            // 
+            this.btnOutAddress.Location = new System.Drawing.Point(1092, 67);
+            this.btnOutAddress.Name = "btnOutAddress";
+            this.btnOutAddress.Size = new System.Drawing.Size(33, 23);
+            this.btnOutAddress.TabIndex = 24;
+            this.btnOutAddress.Text = "...";
+            this.btnOutAddress.UseVisualStyleBackColor = true;
+            this.btnOutAddress.Click += new System.EventHandler(this.btnOutAddress_Click);
+            // 
+            // btnPicAddress
+            // 
+            this.btnPicAddress.Location = new System.Drawing.Point(1092, 186);
+            this.btnPicAddress.Name = "btnPicAddress";
+            this.btnPicAddress.Size = new System.Drawing.Size(33, 23);
+            this.btnPicAddress.TabIndex = 25;
+            this.btnPicAddress.Text = "...";
+            this.btnPicAddress.UseVisualStyleBackColor = true;
+            this.btnPicAddress.Click += new System.EventHandler(this.btnPicAddress_Click);
+            // 
+            // btnInsert
+            // 
+            this.btnInsert.Location = new System.Drawing.Point(888, 113);
+            this.btnInsert.Name = "btnInsert";
+            this.btnInsert.Size = new System.Drawing.Size(75, 23);
+            this.btnInsert.TabIndex = 26;
+            this.btnInsert.Text = "添加";
+            this.btnInsert.UseVisualStyleBackColor = true;
+            this.btnInsert.Click += new System.EventHandler(this.btnInsert_Click);
+            // 
+            // btnUpdate
+            // 
+            this.btnUpdate.Location = new System.Drawing.Point(969, 113);
+            this.btnUpdate.Name = "btnUpdate";
+            this.btnUpdate.Size = new System.Drawing.Size(75, 23);
+            this.btnUpdate.TabIndex = 27;
+            this.btnUpdate.Text = "修改";
+            this.btnUpdate.UseVisualStyleBackColor = true;
+            this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
+            // 
+            // btnDelete
+            // 
+            this.btnDelete.Location = new System.Drawing.Point(1050, 113);
+            this.btnDelete.Name = "btnDelete";
+            this.btnDelete.Size = new System.Drawing.Size(75, 23);
+            this.btnDelete.TabIndex = 28;
+            this.btnDelete.Text = "删除";
+            this.btnDelete.UseVisualStyleBackColor = true;
+            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
+            // 
+            // btnRun
+            // 
+            this.btnRun.Location = new System.Drawing.Point(1050, 378);
+            this.btnRun.Name = "btnRun";
+            this.btnRun.Size = new System.Drawing.Size(75, 23);
+            this.btnRun.TabIndex = 29;
+            this.btnRun.Text = "执行";
+            this.btnRun.UseVisualStyleBackColor = true;
+            this.btnRun.Click += new System.EventHandler(this.btnRun_Click);
+            // 
+            // dgvActionDetail
+            // 
+            this.dgvActionDetail.AllowUserToAddRows = false;
+            this.dgvActionDetail.AllowUserToDeleteRows = false;
+            this.dgvActionDetail.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvActionDetail.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.图片地址,
+            this.图片索引,
+            this.源字段,
+            this.替换字段,
+            this.OID,
+            this.OFlag});
+            this.dgvActionDetail.Location = new System.Drawing.Point(364, 13);
+            this.dgvActionDetail.MultiSelect = false;
+            this.dgvActionDetail.Name = "dgvActionDetail";
+            this.dgvActionDetail.ReadOnly = true;
+            this.dgvActionDetail.RowTemplate.Height = 23;
+            this.dgvActionDetail.Size = new System.Drawing.Size(447, 402);
+            this.dgvActionDetail.TabIndex = 30;
             // 
             // 操作类型
             // 
@@ -190,34 +396,6 @@
             this.目标地址.Name = "目标地址";
             this.目标地址.ReadOnly = true;
             // 
-            // 图片地址
-            // 
-            this.图片地址.DataPropertyName = "PicAddress";
-            this.图片地址.HeaderText = "图片地址";
-            this.图片地址.Name = "图片地址";
-            this.图片地址.ReadOnly = true;
-            // 
-            // 图片索引
-            // 
-            this.图片索引.DataPropertyName = "IntIndex";
-            this.图片索引.HeaderText = "图片索引";
-            this.图片索引.Name = "图片索引";
-            this.图片索引.ReadOnly = true;
-            // 
-            // 源字段
-            // 
-            this.源字段.DataPropertyName = "SourceText";
-            this.源字段.HeaderText = "源字段";
-            this.源字段.Name = "源字段";
-            this.源字段.ReadOnly = true;
-            // 
-            // 替换字段
-            // 
-            this.替换字段.DataPropertyName = "ReplaceText";
-            this.替换字段.HeaderText = "替换字段";
-            this.替换字段.Name = "替换字段";
-            this.替换字段.ReadOnly = true;
-            // 
             // FLag
             // 
             this.FLag.DataPropertyName = "Flag";
@@ -234,194 +412,83 @@
             this.id.ReadOnly = true;
             this.id.Visible = false;
             // 
-            // cbOperationType
+            // 图片地址
             // 
-            this.cbOperationType.FormattingEnabled = true;
-            this.cbOperationType.Location = new System.Drawing.Point(869, 38);
-            this.cbOperationType.Name = "cbOperationType";
-            this.cbOperationType.Size = new System.Drawing.Size(171, 20);
-            this.cbOperationType.TabIndex = 9;
+            this.图片地址.DataPropertyName = "PicAddress";
+            this.图片地址.HeaderText = "图片地址";
+            this.图片地址.Name = "图片地址";
             // 
-            // label1
+            // 图片索引
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(792, 41);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(59, 12);
-            this.label1.TabIndex = 10;
-            this.label1.Text = "操作类型:";
+            this.图片索引.DataPropertyName = "IntIndex";
+            this.图片索引.HeaderText = "图片索引";
+            this.图片索引.Name = "图片索引";
             // 
-            // label2
+            // 源字段
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(792, 67);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(47, 12);
-            this.label2.TabIndex = 11;
-            this.label2.Text = "源地址:";
+            this.源字段.DataPropertyName = "SourceText";
+            this.源字段.HeaderText = "源字段";
+            this.源字段.Name = "源字段";
             // 
-            // label3
+            // 替换字段
             // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(792, 94);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(59, 12);
-            this.label3.TabIndex = 12;
-            this.label3.Text = "目标地址:";
+            this.替换字段.DataPropertyName = "ReplaceText";
+            this.替换字段.HeaderText = "替换字段";
+            this.替换字段.Name = "替换字段";
             // 
-            // label4
+            // OID
             // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(792, 121);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(59, 12);
-            this.label4.TabIndex = 13;
-            this.label4.Text = "图片地址:";
+            this.OID.DataPropertyName = "Oid";
+            this.OID.HeaderText = "OID";
+            this.OID.Name = "OID";
+            this.OID.Visible = false;
             // 
-            // label5
+            // OFlag
             // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(792, 148);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(59, 12);
-            this.label5.TabIndex = 14;
-            this.label5.Text = "图片索引:";
+            this.OFlag.DataPropertyName = "OFlag";
+            this.OFlag.HeaderText = "OFlag";
+            this.OFlag.Name = "OFlag";
+            this.OFlag.Visible = false;
             // 
-            // label6
+            // btnADDelete
             // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(792, 172);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(47, 12);
-            this.label6.TabIndex = 15;
-            this.label6.Text = "源字段:";
+            this.btnADDelete.Location = new System.Drawing.Point(1050, 307);
+            this.btnADDelete.Name = "btnADDelete";
+            this.btnADDelete.Size = new System.Drawing.Size(75, 23);
+            this.btnADDelete.TabIndex = 33;
+            this.btnADDelete.Text = "删除";
+            this.btnADDelete.UseVisualStyleBackColor = true;
+            this.btnADDelete.Click += new System.EventHandler(this.btnADDelete_Click);
             // 
-            // label7
+            // btnADEdit
             // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(792, 199);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(59, 12);
-            this.label7.TabIndex = 16;
-            this.label7.Text = "替换字段:";
+            this.btnADEdit.Location = new System.Drawing.Point(969, 307);
+            this.btnADEdit.Name = "btnADEdit";
+            this.btnADEdit.Size = new System.Drawing.Size(75, 23);
+            this.btnADEdit.TabIndex = 32;
+            this.btnADEdit.Text = "修改";
+            this.btnADEdit.UseVisualStyleBackColor = true;
+            this.btnADEdit.Click += new System.EventHandler(this.btnADEdit_Click);
             // 
-            // tbInAddress
+            // btnADAdd
             // 
-            this.tbInAddress.Location = new System.Drawing.Point(869, 64);
-            this.tbInAddress.Name = "tbInAddress";
-            this.tbInAddress.Size = new System.Drawing.Size(171, 21);
-            this.tbInAddress.TabIndex = 17;
-            // 
-            // tbOutAddress
-            // 
-            this.tbOutAddress.Location = new System.Drawing.Point(869, 91);
-            this.tbOutAddress.Name = "tbOutAddress";
-            this.tbOutAddress.Size = new System.Drawing.Size(171, 21);
-            this.tbOutAddress.TabIndex = 18;
-            // 
-            // tbPicAddress
-            // 
-            this.tbPicAddress.Location = new System.Drawing.Point(869, 118);
-            this.tbPicAddress.Name = "tbPicAddress";
-            this.tbPicAddress.Size = new System.Drawing.Size(171, 21);
-            this.tbPicAddress.TabIndex = 19;
-            // 
-            // tbIntIndex
-            // 
-            this.tbIntIndex.Location = new System.Drawing.Point(869, 145);
-            this.tbIntIndex.Name = "tbIntIndex";
-            this.tbIntIndex.Size = new System.Drawing.Size(171, 21);
-            this.tbIntIndex.TabIndex = 20;
-            // 
-            // tbSourceText
-            // 
-            this.tbSourceText.Location = new System.Drawing.Point(869, 169);
-            this.tbSourceText.Name = "tbSourceText";
-            this.tbSourceText.Size = new System.Drawing.Size(171, 21);
-            this.tbSourceText.TabIndex = 21;
-            // 
-            // tbReplaceText
-            // 
-            this.tbReplaceText.Location = new System.Drawing.Point(869, 196);
-            this.tbReplaceText.Name = "tbReplaceText";
-            this.tbReplaceText.Size = new System.Drawing.Size(171, 21);
-            this.tbReplaceText.TabIndex = 22;
-            // 
-            // btnInAddress
-            // 
-            this.btnInAddress.Location = new System.Drawing.Point(1047, 62);
-            this.btnInAddress.Name = "btnInAddress";
-            this.btnInAddress.Size = new System.Drawing.Size(33, 23);
-            this.btnInAddress.TabIndex = 23;
-            this.btnInAddress.Text = "...";
-            this.btnInAddress.UseVisualStyleBackColor = true;
-            this.btnInAddress.Click += new System.EventHandler(this.btnInAddress_Click);
-            // 
-            // btnOutAddress
-            // 
-            this.btnOutAddress.Location = new System.Drawing.Point(1047, 89);
-            this.btnOutAddress.Name = "btnOutAddress";
-            this.btnOutAddress.Size = new System.Drawing.Size(33, 23);
-            this.btnOutAddress.TabIndex = 24;
-            this.btnOutAddress.Text = "...";
-            this.btnOutAddress.UseVisualStyleBackColor = true;
-            this.btnOutAddress.Click += new System.EventHandler(this.btnOutAddress_Click);
-            // 
-            // btnPicAddress
-            // 
-            this.btnPicAddress.Location = new System.Drawing.Point(1047, 116);
-            this.btnPicAddress.Name = "btnPicAddress";
-            this.btnPicAddress.Size = new System.Drawing.Size(33, 23);
-            this.btnPicAddress.TabIndex = 25;
-            this.btnPicAddress.Text = "...";
-            this.btnPicAddress.UseVisualStyleBackColor = true;
-            this.btnPicAddress.Click += new System.EventHandler(this.btnPicAddress_Click);
-            // 
-            // btnInsert
-            // 
-            this.btnInsert.Location = new System.Drawing.Point(843, 265);
-            this.btnInsert.Name = "btnInsert";
-            this.btnInsert.Size = new System.Drawing.Size(75, 23);
-            this.btnInsert.TabIndex = 26;
-            this.btnInsert.Text = "添加";
-            this.btnInsert.UseVisualStyleBackColor = true;
-            this.btnInsert.Click += new System.EventHandler(this.btnInsert_Click);
-            // 
-            // btnUpdate
-            // 
-            this.btnUpdate.Location = new System.Drawing.Point(924, 265);
-            this.btnUpdate.Name = "btnUpdate";
-            this.btnUpdate.Size = new System.Drawing.Size(75, 23);
-            this.btnUpdate.TabIndex = 27;
-            this.btnUpdate.Text = "修改";
-            this.btnUpdate.UseVisualStyleBackColor = true;
-            this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
-            // 
-            // btnDelete
-            // 
-            this.btnDelete.Location = new System.Drawing.Point(1005, 265);
-            this.btnDelete.Name = "btnDelete";
-            this.btnDelete.Size = new System.Drawing.Size(75, 23);
-            this.btnDelete.TabIndex = 28;
-            this.btnDelete.Text = "删除";
-            this.btnDelete.UseVisualStyleBackColor = true;
-            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
-            // 
-            // btnRun
-            // 
-            this.btnRun.Location = new System.Drawing.Point(1005, 318);
-            this.btnRun.Name = "btnRun";
-            this.btnRun.Size = new System.Drawing.Size(75, 23);
-            this.btnRun.TabIndex = 29;
-            this.btnRun.Text = "执行";
-            this.btnRun.UseVisualStyleBackColor = true;
-            this.btnRun.Click += new System.EventHandler(this.btnRun_Click);
+            this.btnADAdd.Location = new System.Drawing.Point(888, 307);
+            this.btnADAdd.Name = "btnADAdd";
+            this.btnADAdd.Size = new System.Drawing.Size(75, 23);
+            this.btnADAdd.TabIndex = 31;
+            this.btnADAdd.Text = "添加";
+            this.btnADAdd.UseVisualStyleBackColor = true;
+            this.btnADAdd.Click += new System.EventHandler(this.btnADAdd_Click);
             // 
             // PDFediter
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1085, 427);
+            this.ClientSize = new System.Drawing.Size(1139, 427);
+            this.Controls.Add(this.btnADDelete);
+            this.Controls.Add(this.btnADEdit);
+            this.Controls.Add(this.btnADAdd);
+            this.Controls.Add(this.dgvActionDetail);
             this.Controls.Add(this.btnRun);
             this.Controls.Add(this.btnDelete);
             this.Controls.Add(this.btnUpdate);
@@ -450,6 +517,7 @@
             this.Load += new System.EventHandler(this.PDFediter_Load);
             this.gb_test.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvMain)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvActionDetail)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -489,12 +557,18 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn 操作类型;
         private System.Windows.Forms.DataGridViewTextBoxColumn 源地址;
         private System.Windows.Forms.DataGridViewTextBoxColumn 目标地址;
+        private System.Windows.Forms.DataGridViewTextBoxColumn FLag;
+        private System.Windows.Forms.DataGridViewTextBoxColumn id;
+        private System.Windows.Forms.DataGridView dgvActionDetail;
         private System.Windows.Forms.DataGridViewTextBoxColumn 图片地址;
         private System.Windows.Forms.DataGridViewTextBoxColumn 图片索引;
         private System.Windows.Forms.DataGridViewTextBoxColumn 源字段;
         private System.Windows.Forms.DataGridViewTextBoxColumn 替换字段;
-        private System.Windows.Forms.DataGridViewTextBoxColumn FLag;
-        private System.Windows.Forms.DataGridViewTextBoxColumn id;
+        private System.Windows.Forms.DataGridViewTextBoxColumn OID;
+        private System.Windows.Forms.DataGridViewTextBoxColumn OFlag;
+        private System.Windows.Forms.Button btnADDelete;
+        private System.Windows.Forms.Button btnADEdit;
+        private System.Windows.Forms.Button btnADAdd;
     }
 }
 

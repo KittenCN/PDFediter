@@ -18,6 +18,7 @@ namespace PDFediter
     public partial class PDFediter : Form
     {
         public static string DBfile = ".\\DB\\BaseData.mdb";
+        public static int intCurrentRow = 0;
         public PDFediter()
         {
             InitializeComponent();
@@ -206,24 +207,45 @@ namespace PDFediter
         private void btnInsert_Click(object sender, EventArgs e)
         {
             AccessHelper ah = new AccessHelper(DBfile);
-            string strSQL = "insert into tabOperation(OperationType,InAddress,OutAddress,PicAddress,IntIndex,SourceText,ReplaceText,Flag) ";
-            strSQL = strSQL + " values('" + cbOperationType.SelectedIndex.ToString() + "','" + tbInAddress.Text + "','" + tbOutAddress.Text + "','" + tbPicAddress.Text + "','" + tbIntIndex.Text + "','" + tbSourceText.Text + "','" + tbReplaceText.Text + "','1') ";
+            string strSQL = "insert into tabOperation(OperationType,InAddress,OutAddress,Flag) ";
+            strSQL = strSQL + " values('" + cbOperationType.SelectedIndex.ToString() + "','" + tbInAddress.Text + "','" + tbOutAddress.Text +  "','1') ";
             ah.ExecuteNonQuery(strSQL);
             FlashData();
         }
 
         private void PDFediter_Load(object sender, EventArgs e)
         {
+            btnADAdd.Enabled = false;
+            btnADEdit.Enabled = false;
+            btnADDelete.Enabled = false;
+
             cbOperationType.Items.Add("替换图片");
             cbOperationType.Items.Add("替换文字");
 
             tbIntIndex.KeyPress += tbIntIndex_KeyPress;
             cbOperationType.SelectedIndexChanged += CbOperationType_SelectedIndexChanged;
             dgvMain.SelectionChanged += DgvMain_SelectionChanged;
+            
+            dgvActionDetail.SelectionChanged += DgvActionDetail_SelectionChanged;
 
             cbOperationType.SelectedIndex = 0;
 
             FlashData();
+        }
+
+        private void DgvActionDetail_SelectionChanged(object sender, EventArgs e)
+        {
+            //throw new NotImplementedException();
+            if(dgvActionDetail.SelectedRows.Count!=0 && dgvActionDetail.CurrentRow.Cells["Oid"].Value.ToString()!=null && dgvActionDetail.CurrentRow.Cells["Oid"].Value.ToString()!="")
+            {
+                tbPicAddress.Text = dgvActionDetail.CurrentRow.Cells["图片地址"].Value.ToString();
+                tbIntIndex.Text = dgvActionDetail.CurrentRow.Cells["图片索引"].Value.ToString();
+                tbSourceText.Text = dgvActionDetail.CurrentRow.Cells["源字段"].Value.ToString();
+                tbReplaceText.Text = dgvActionDetail.CurrentRow.Cells["替换字段"].Value.ToString();
+                btnADAdd.Enabled = true;
+                btnADEdit.Enabled = true;
+                btnADDelete.Enabled = true;
+            }
         }
 
         private void DgvMain_SelectionChanged(object sender, EventArgs e)
@@ -232,14 +254,15 @@ namespace PDFediter
             if(dgvMain.SelectedRows.Count!=0 && dgvMain.CurrentRow.Cells["id"].Value.ToString() != null && dgvMain.CurrentRow.Cells["id"].Value.ToString() != "")
             {
                 int RowIndex = dgvMain.CurrentRow.Index;
+                intCurrentRow = RowIndex;
                 tbInAddress.Text = dgvMain.CurrentRow.Cells["源地址"].Value.ToString();
                 tbOutAddress.Text= dgvMain.CurrentRow.Cells["目标地址"].Value.ToString();
                 switch (dgvMain.CurrentRow.Cells["操作类型"].Value.ToString())
                 {
                     case "替换图片":
                         cbOperationType.SelectedIndex = 0;
-                        tbPicAddress.Text = dgvMain.CurrentRow.Cells["图片地址"].Value.ToString();
-                        tbIntIndex.Text = dgvMain.CurrentRow.Cells["图片索引"].Value.ToString();
+                        tbPicAddress.Text = "";
+                        tbIntIndex.Text = "";
                         tbSourceText.Text = "";
                         tbReplaceText.Text = "";
                         tbPicAddress.Enabled = true;
@@ -247,18 +270,24 @@ namespace PDFediter
                         tbIntIndex.Enabled = true;
                         tbSourceText.Enabled = false;
                         tbReplaceText.Enabled = false;
+                        btnADAdd.Enabled = true;
+                        btnADEdit.Enabled = false;
+                        btnADDelete.Enabled = false;
                         break;
                     case "替换文字":
                         cbOperationType.SelectedIndex = 1;
                         tbPicAddress.Text = "";
                         tbIntIndex.Text = "";
-                        tbSourceText.Text = dgvMain.CurrentRow.Cells["源字段"].Value.ToString();
-                        tbReplaceText.Text = dgvMain.CurrentRow.Cells["替换字段"].Value.ToString();
+                        tbSourceText.Text = "";
+                        tbReplaceText.Text = "";
                         tbPicAddress.Enabled = false;
                         btnPicAddress.Enabled = false;
                         tbIntIndex.Enabled = false;
                         tbSourceText.Enabled = true;
                         tbReplaceText.Enabled = true;
+                        btnADAdd.Enabled = true;
+                        btnADEdit.Enabled = false;
+                        btnADDelete.Enabled = false;
                         break;
                     default:
                         tbPicAddress.Text = "";
@@ -270,8 +299,16 @@ namespace PDFediter
                         tbIntIndex.Enabled = false;
                         tbSourceText.Enabled = false;
                         tbReplaceText.Enabled = false;
+                        btnADAdd.Enabled = false;
+                        btnADEdit.Enabled = false;
+                        btnADDelete.Enabled = false;
                         break;
                 }
+                AccessHelper ah = new AccessHelper(DBfile);
+                string strSQL = "select ID,OID,PicAddress,IntIndex,SourceText,ReplaceText,OFlag from tabActionDetail where oflag='1' and oid=" + int.Parse(dgvMain.CurrentRow.Cells["id"].Value.ToString());
+                DataTable dtSQL = ah.ReturnDataTable(strSQL);
+                dgvActionDetail.DataSource = dtSQL;
+                dgvActionDetail.Columns[0].Visible = false;
             }
         }
 
@@ -319,7 +356,7 @@ namespace PDFediter
         private void FlashData()
         {
             AccessHelper ah = new AccessHelper(DBfile);
-            string strSQL = "select * from tabOperation where Flag='1' order by id";
+            string strSQL = "select id,OperationType,InAddress,OutAddress from tabOperation where Flag='1' order by id";
             DataTable dtSQL = ah.ReturnDataTable(strSQL);
             for (int i = 0; i < dtSQL.Rows.Count; i++)
             {
@@ -337,6 +374,12 @@ namespace PDFediter
                 }
             }
             dgvMain.DataSource = dtSQL;
+            strSQL = "select ID,OID,PicAddress,IntIndex,SourceText,ReplaceText,OFlag from tabActionDetail where oflag='1' and oid=" + int.Parse(dgvMain.CurrentRow.Cells["id"].Value.ToString());
+            dtSQL = ah.ReturnDataTable(strSQL);
+            dgvActionDetail.DataSource = dtSQL;
+            dgvActionDetail.Columns[0].Visible = false;
+
+            dgvMain.Rows[intCurrentRow].Selected = true;
         }
 
         private void btnInAddress_Click(object sender, EventArgs e)
@@ -388,7 +431,7 @@ namespace PDFediter
 
         private void dgvMain_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            
+            //DgvMain_SelectionChanged(null, null);
         }
 
         private void btnUpdate_Click(object sender, EventArgs e)
@@ -398,8 +441,8 @@ namespace PDFediter
                 AccessHelper ah = new AccessHelper(DBfile);
                 //(OperationType,InAddress,OutAddress,PicAddress,IntIndex,SourceText,ReplaceText,Flag)
                 string strSQL = "update tabOperation set ";
-                strSQL = strSQL + " OperationType='" + cbOperationType.SelectedIndex.ToString() + "',InAddress='" + tbInAddress.Text + "',OutAddress='" + tbOutAddress.Text + "',PicAddress='" + tbPicAddress.Text + "',IntIndex='" + tbIntIndex.Text + "',SourceText='" + tbSourceText.Text + "',ReplaceText='" + tbReplaceText.Text + "' ";
-                strSQL = strSQL + " where id=" + dgvMain.CurrentRow.Cells["id"].Value.ToString();
+                strSQL = strSQL + " OperationType='" + cbOperationType.SelectedIndex.ToString() + "',InAddress='" + tbInAddress.Text + "',OutAddress='" + tbOutAddress.Text + "' ";
+                strSQL = strSQL + " where flag='1' and id=" + dgvMain.CurrentRow.Cells["id"].Value.ToString();
                 ah.ExecuteNonQuery(strSQL);
                 FlashData();
             }
@@ -413,7 +456,7 @@ namespace PDFediter
                 //(OperationType,InAddress,OutAddress,PicAddress,IntIndex,SourceText,ReplaceText,Flag)
                 string strSQL = "update tabOperation set ";
                 //strSQL = strSQL + " OperationType='" + cbOperationType.SelectedIndex.ToString() + "',InAddress='" + tbInAddress.Text + "',OutAddress='" + tbOutAddress.Text + "',PicAddress='" + tbPicAddress.Text + "',IntIndex='" + tbIntIndex.Text + "',SourceText='" + tbSourceText.Text + "',ReplaceText='" + tbReplaceText.Text + "' ";
-                strSQL = strSQL + " Flag=0 where id=" + dgvMain.CurrentRow.Cells["id"].Value.ToString();
+                strSQL = strSQL + " Flag='0' where id=" + dgvMain.CurrentRow.Cells["id"].Value.ToString();
                 ah.ExecuteNonQuery(strSQL);
                 FlashData();
             }
@@ -430,61 +473,103 @@ namespace PDFediter
             string strTempAddress = "";
             for(int x=0;x<dgvMain.Rows.Count;x++)
             {
-                switch(dgvMain.Rows[x].Cells["操作类型"].Value.ToString())
+                AccessHelper ah = new AccessHelper(DBfile);
+                string strSQL = "select * from tabActionDetail where oflag='1' and oid=" + dgvMain.Rows[x].Cells["id"].Value.ToString();
+                DataTable dtSQL = ah.ReturnDataTable(strSQL);
+                dgvActionDetail.DataSource = dtSQL;
+                if(dtSQL.Rows.Count>0)
                 {
-                    case "替换图片":
+                    for(int y=0;y<dtSQL.Rows.Count;y++)
+                    {
+                        switch (dgvMain.Rows[x].Cells["操作类型"].Value.ToString())
                         {
-                            strInAddress = dgvMain.Rows[x].Cells["源地址"].Value.ToString();
-                            strOutAddress = dgvMain.Rows[x].Cells["目标地址"].Value.ToString();
-                            strPicAddress = dgvMain.Rows[x].Cells["图片地址"].Value.ToString();
-                            strIntIndex = dgvMain.Rows[x].Cells["图片索引"].Value.ToString();
-                            strTempAddress = strInAddress + @"\tempout\";
-                            DirectoryInfo dir = new DirectoryInfo(strInAddress);
-                            FileInfo[] inf = dir.GetFiles();
-                            foreach (FileInfo finf in inf)
-                            {
-                                if (finf.Extension.Equals(".pdf"))
+                            case "替换图片":
                                 {
-                                    string inname = Path.GetFileNameWithoutExtension(finf.FullName.ToString());
-                                    string docxFile = strTempAddress + inname + ".docx";
-                                    PDFHelper.ConvertPDFtoDOCX(finf.FullName.ToString(), strTempAddress);
-                                    WordHelper.ReplacePIC(docxFile, int.Parse(strIntIndex), strPicAddress, strTempAddress);
-                                    WordHelper.ConvertDOCXtoPDF(docxFile, strOutAddress);
-                                    System.Threading.Thread.Sleep(5000);
+                                    strInAddress = dgvMain.Rows[x].Cells["源地址"].Value.ToString();
+                                    strOutAddress = dgvMain.Rows[x].Cells["目标地址"].Value.ToString();
+                                    strPicAddress = dgvActionDetail.Rows[y].Cells["图片地址"].Value.ToString();
+                                    strIntIndex = dgvActionDetail.Rows[y].Cells["图片索引"].Value.ToString();
+                                    strTempAddress = strInAddress + @"\tempout\";
+                                    IO.checkDir(strInAddress);
+                                    DirectoryInfo dir = new DirectoryInfo(strInAddress);
+                                    FileInfo[] inf = dir.GetFiles();
+                                    foreach (FileInfo finf in inf)
+                                    {
+                                        if (finf.Extension.Equals(".pdf"))
+                                        {
+                                            string inname = Path.GetFileNameWithoutExtension(finf.FullName.ToString());
+                                            string docxFile = strTempAddress + inname + ".docx";
+                                            PDFHelper.ConvertPDFtoDOCX(finf.FullName.ToString(), strTempAddress);
+                                            WordHelper.ReplacePIC(docxFile, int.Parse(strIntIndex), strPicAddress, strTempAddress);
+                                            WordHelper.ConvertDOCXtoPDF(docxFile, strOutAddress);
+                                            System.Threading.Thread.Sleep(5000);
+                                        }
+                                    }
+                                    break;
                                 }
-                            }
-                            break;
-                        }
-                    case "替换文字":
-                        {
-                            strInAddress = dgvMain.Rows[x].Cells["源地址"].Value.ToString();
-                            strOutAddress = dgvMain.Rows[x].Cells["目标地址"].Value.ToString();
-                            strSourceText = dgvMain.Rows[x].Cells["源字段"].Value.ToString();
-                            strReplaceText = dgvMain.Rows[x].Cells["替换字段"].Value.ToString();
-                            strTempAddress = strInAddress + @"\tempout\";
-                            DirectoryInfo dir = new DirectoryInfo(strInAddress);
-                            FileInfo[] inf = dir.GetFiles();
-                            foreach (FileInfo finf in inf)
-                            {
-                                if (finf.Extension.Equals(".pdf"))
+                            case "替换文字":
                                 {
-                                    string inname = Path.GetFileNameWithoutExtension(finf.FullName.ToString());
-                                    string docxFile = strTempAddress + inname + ".docx";
-                                    PDFHelper.ConvertPDFtoDOCX(finf.FullName.ToString(), strTempAddress);
-                                    WordHelper.ReplaceText(docxFile, strSourceText, strReplaceText, strTempAddress);
-                                    WordHelper.ConvertDOCXtoPDF(docxFile, strOutAddress);
-                                    System.Threading.Thread.Sleep(5000);
+                                    strInAddress = dgvMain.Rows[x].Cells["源地址"].Value.ToString();
+                                    strOutAddress = dgvMain.Rows[x].Cells["目标地址"].Value.ToString();
+                                    strSourceText = dgvActionDetail.Rows[y].Cells["源字段"].Value.ToString();
+                                    strReplaceText = dgvActionDetail.Rows[y].Cells["替换字段"].Value.ToString();
+                                    strTempAddress = strInAddress + @"\tempout\";
+                                    IO.checkDir(strInAddress);
+                                    DirectoryInfo dir = new DirectoryInfo(strInAddress);
+                                    FileInfo[] inf = dir.GetFiles();
+                                    foreach (FileInfo finf in inf)
+                                    {
+                                        if (finf.Extension.Equals(".pdf"))
+                                        {
+                                            string inname = Path.GetFileNameWithoutExtension(finf.FullName.ToString());
+                                            string docxFile = strTempAddress + inname + ".docx";
+                                            PDFHelper.ConvertPDFtoDOCX(finf.FullName.ToString(), strTempAddress);
+                                            WordHelper.ReplaceText(docxFile, strSourceText, strReplaceText, strTempAddress);
+                                            WordHelper.ConvertDOCXtoPDF(docxFile, strOutAddress);
+                                            System.Threading.Thread.Sleep(5000);
+                                        }
+                                    }
+                                    break;
                                 }
-                            }
-                            break;
+                            default:
+                                {
+                                    break;
+                                }
                         }
-                    default:
-                        {
-                            break;
-                        }
+                    }
                 }
             }
             MessageBox.Show("已完成所有列表执行动作.");
+        }
+
+        private void btnADAdd_Click(object sender, EventArgs e)
+        {
+            AccessHelper ah = new AccessHelper(DBfile);
+            string strSQL = "insert into tabActionDetail(Oid,PicAddress,IntIndex,SourceText,ReplaceText,OFlag) ";
+            strSQL = strSQL + " values(" + int.Parse(dgvMain.CurrentRow.Cells["ID"].Value.ToString()) + ",'" + tbPicAddress.Text + "','" + tbIntIndex.Text + "','" + tbSourceText.Text + "','" + tbReplaceText.Text + "','1') ";
+            ah.ExecuteNonQuery(strSQL);
+            FlashData();
+        }
+
+        private void btnADEdit_Click(object sender, EventArgs e)
+        {
+            AccessHelper ah = new AccessHelper(DBfile);
+            //Oid,PicAddress,IntIndex,SourceText,ReplaceText,OFlag
+            string strSQL = "update tabActionDetail ";
+            strSQL = strSQL + " set PicAddress='" + tbPicAddress.Text + "',IntIndex='" + tbIntIndex.Text + "',SourceText='" + tbSourceText.Text + "',ReplaceText='" + tbReplaceText.Text + "' ";
+            strSQL = strSQL + " where oflag='1' and id=" + dgvActionDetail.CurrentRow.Cells["id"].Value.ToString();
+            ah.ExecuteNonQuery(strSQL);
+            FlashData();
+        }
+
+        private void btnADDelete_Click(object sender, EventArgs e)
+        {
+            AccessHelper ah = new AccessHelper(DBfile);
+            string strSQL = "update tabActionDetail ";
+            strSQL = strSQL + " set oflag='0' ";
+            strSQL = strSQL + " where oflag='1' and id=" + dgvActionDetail.CurrentRow.Cells["id"].Value.ToString();
+            ah.ExecuteNonQuery(strSQL);
+            FlashData();
         }
     }
 }
