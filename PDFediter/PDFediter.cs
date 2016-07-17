@@ -48,7 +48,7 @@ namespace PDFediter
                 }
                 catch (Exception ex)
                 {
-
+                    System.Windows.Forms.MessageBox.Show(ex.ToString());
                 }
             }
         }
@@ -79,7 +79,7 @@ namespace PDFediter
                 }
                 catch (Exception ex)
                 {
-
+                    System.Windows.Forms.MessageBox.Show(ex.ToString());
                 }
             }
         }

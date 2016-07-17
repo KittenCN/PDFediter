@@ -144,7 +144,10 @@ namespace PDFediter
                 return num;
             }
             catch(Exception ex)
-            { throw; }
+            {
+                System.Windows.Forms.MessageBox.Show(ex.ToString());
+                throw;
+            }
         }
 
         /// <summary>
