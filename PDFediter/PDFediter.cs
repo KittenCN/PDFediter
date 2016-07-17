@@ -366,7 +366,7 @@ namespace PDFediter
                 dtSQL = ah.ReturnDataTable(strSQL);
                 dgvActionDetail.DataSource = dtSQL;
                 dgvActionDetail.Columns[0].Visible = false;
-                dgvMain.CurrentCell = dgvMain.Rows[intCurrentRow].Cells[2];
+                dgvMain.CurrentCell = dgvMain.Rows[intCurrentRow].Cells["源地址"];
                 dgvMain.Rows[intCurrentRow].Selected = true;               
                 ReflashData();
             }
