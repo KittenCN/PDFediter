@@ -552,7 +552,7 @@ namespace PDFediter
                 }
                 MessageBox.Show("已完成所有列表执行动作.");
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 MessageBox.Show(ex.ToString());
             }
@@ -586,6 +586,44 @@ namespace PDFediter
             strSQL = strSQL + " where oflag='1' and id=" + dgvActionDetail.CurrentRow.Cells["id"].Value.ToString();
             ah.ExecuteNonQuery(strSQL);
             FlashData();
+        }
+
+        private void btnTestPIC_Click(object sender, EventArgs e)
+        {
+            string strInAddress = "";
+            string strPICTestAddress = "";
+            string strTempAddress = "";
+            string strOutAddress = "";
+            try
+            {
+                for (int x = 0; x < dgvMain.Rows.Count; x++)
+                {
+                    strInAddress = dgvMain.Rows[x].Cells["源地址"].Value.ToString();
+                    strPICTestAddress = System.IO.Directory.GetCurrentDirectory() + @"\PICSource\";
+                    strOutAddress = strInAddress + @"\PICTest\";
+                    strTempAddress = strInAddress + @"\tempout\";
+                    IO.checkDir(strTempAddress);
+                    DirectoryInfo dir = new DirectoryInfo(strInAddress);
+                    FileInfo[] inf = dir.GetFiles();
+                    foreach (FileInfo finf in inf)
+                    {
+                        if (finf.Extension.Equals(".pdf"))
+                        {
+                            string inname = Path.GetFileNameWithoutExtension(finf.FullName.ToString());
+                            string docxFile = strTempAddress + inname + ".docx";
+                            PDFHelper.ConvertPDFtoDOCX(finf.FullName.ToString(), strTempAddress);
+                            WordHelper.TestPIC(docxFile, strPICTestAddress, strTempAddress);
+                            WordHelper.ConvertDOCXtoPDF(docxFile, strOutAddress);
+                            System.Threading.Thread.Sleep(3000);
+                        }
+                    }
+                }
+                MessageBox.Show("已完成所有列表图片测试.");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
         }
     }
 }
