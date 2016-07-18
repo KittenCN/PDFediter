@@ -73,6 +73,9 @@
             this.btnADEdit = new System.Windows.Forms.Button();
             this.btnADAdd = new System.Windows.Forms.Button();
             this.btnTestPIC = new System.Windows.Forms.Button();
+            this.label8 = new System.Windows.Forms.Label();
+            this.tbTextPicAddress = new System.Windows.Forms.TextBox();
+            this.btnTestPicAddress = new System.Windows.Forms.Button();
             this.gb_test.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvMain)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvActionDetail)).BeginInit();
@@ -497,11 +500,40 @@
             this.btnTestPIC.UseVisualStyleBackColor = true;
             this.btnTestPIC.Click += new System.EventHandler(this.btnTestPIC_Click);
             // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(817, 347);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(83, 12);
+            this.label8.TabIndex = 35;
+            this.label8.Text = "测试图片目录:";
+            // 
+            // tbTextPicAddress
+            // 
+            this.tbTextPicAddress.Location = new System.Drawing.Point(914, 344);
+            this.tbTextPicAddress.Name = "tbTextPicAddress";
+            this.tbTextPicAddress.Size = new System.Drawing.Size(171, 21);
+            this.tbTextPicAddress.TabIndex = 36;
+            // 
+            // btnTestPicAddress
+            // 
+            this.btnTestPicAddress.Location = new System.Drawing.Point(1092, 342);
+            this.btnTestPicAddress.Name = "btnTestPicAddress";
+            this.btnTestPicAddress.Size = new System.Drawing.Size(33, 23);
+            this.btnTestPicAddress.TabIndex = 37;
+            this.btnTestPicAddress.Text = "...";
+            this.btnTestPicAddress.UseVisualStyleBackColor = true;
+            this.btnTestPicAddress.Click += new System.EventHandler(this.btnTestPicAddress_Click);
+            // 
             // PDFediter
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1139, 427);
+            this.Controls.Add(this.btnTestPicAddress);
+            this.Controls.Add(this.tbTextPicAddress);
+            this.Controls.Add(this.label8);
             this.Controls.Add(this.btnTestPIC);
             this.Controls.Add(this.btnADDelete);
             this.Controls.Add(this.btnADEdit);
@@ -588,6 +620,9 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn OID;
         private System.Windows.Forms.DataGridViewTextBoxColumn OFlag;
         private System.Windows.Forms.Button btnTestPIC;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.TextBox tbTextPicAddress;
+        private System.Windows.Forms.Button btnTestPicAddress;
     }
 }
 

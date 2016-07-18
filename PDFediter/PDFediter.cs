@@ -219,6 +219,7 @@ namespace PDFediter
             btnADEdit.Enabled = false;
             btnADDelete.Enabled = false;
 
+            tbTextPicAddress.Text = System.IO.Directory.GetCurrentDirectory() + @"\PICSource\";
             cbOperationType.Items.Add("替换图片");
             cbOperationType.Items.Add("替换文字");
 
@@ -599,7 +600,7 @@ namespace PDFediter
                 for (int x = 0; x < dgvMain.Rows.Count; x++)
                 {
                     strInAddress = dgvMain.Rows[x].Cells["源地址"].Value.ToString();
-                    strPICTestAddress = System.IO.Directory.GetCurrentDirectory() + @"\PICSource\";
+                    strPICTestAddress = tbTextPicAddress.Text;
                     strOutAddress = strInAddress + @"\PICTest\";
                     strTempAddress = strInAddress + @"\tempout\";
                     IO.checkDir(strTempAddress);
@@ -623,6 +624,16 @@ namespace PDFediter
             catch (Exception ex)
             {
                 MessageBox.Show(ex.ToString());
+            }
+        }
+
+        private void btnTestPicAddress_Click(object sender, EventArgs e)
+        {
+            FolderBrowserDialog dilog = new FolderBrowserDialog();
+            dilog.Description = "请选择文件夹";
+            if (dilog.ShowDialog() == DialogResult.OK || dilog.ShowDialog() == DialogResult.Yes)
+            {
+                tbTextPicAddress.Text = dilog.SelectedPath;
             }
         }
     }
