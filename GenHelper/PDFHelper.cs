@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 using System.IO;
 using Aspose.Pdf;
 
-namespace PDFediter
+namespace GenHelper
 {
-    class PDFHelper
+    public class PDFHelper
     {
         public static void PDFReplacePIC(string strInAddress,int intIndex,string strPicAddress,string strOutAddress)
         {

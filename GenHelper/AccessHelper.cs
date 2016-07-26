@@ -6,9 +6,9 @@ using System.Collections;
 using System.Reflection;
 using System.Runtime.InteropServices;
 
-namespace PDFediter
+namespace GenHelper
 {
-    class AccessHelper
+    public class AccessHelper
     {
         #region[字段]
         private string accesspath = string.Empty;
@@ -132,7 +132,7 @@ namespace PDFediter
         /// </summary>
         /// <param name="sqlstr">SQL语句</param>
         /// <returns>受影响的条数,出错则产生异常</returns>
-        public int ExecuteNonQuery(string sqlstr)
+        public string ExecuteNonQuery(string sqlstr)
         {
             try
             {
@@ -141,11 +141,11 @@ namespace PDFediter
                 int num = command.ExecuteNonQuery();
                 command.Parameters.Clear();
                 Close();
-                return num;
+                return num.ToString();
             }
             catch(Exception ex)
             {
-                System.Windows.Forms.MessageBox.Show(ex.ToString());
+                return ex.ToString();
                 throw;
             }
         }

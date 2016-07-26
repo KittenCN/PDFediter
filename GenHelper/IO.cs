@@ -5,9 +5,9 @@ using System.Text;
 using System.Threading.Tasks;
 using System.IO;
 
-namespace PDFediter
+namespace GenHelper
 {
-    class IO
+    public class IO
     {
         public static bool checkDir(string url)
         {

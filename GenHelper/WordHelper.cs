@@ -7,9 +7,9 @@ using System.IO;
 using Aspose.Words;
 using Aspose.Words.Drawing;
 
-namespace PDFediter
+namespace GenHelper
 {
-    class WordHelper
+    public class WordHelper
     {
         public static void ReplaceText(string strInAddress, string SourceText, string ReplaceText, string strOutAddress)
         {

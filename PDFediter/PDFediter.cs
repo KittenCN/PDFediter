@@ -12,6 +12,7 @@ using System.IO;
 //using Aspose.Pdf;
 //using Aspose.Words;
 using System.Diagnostics;
+using GenHelper;
 
 namespace PDFediter
 {
@@ -43,7 +44,7 @@ namespace PDFediter
                         output = dilog.SelectedPath;
                     }
                     PDFHelper.ConvertPDFtoDOCX(ofd.FileName.ToString(), output);
-
+                    //PDFHelper.ConvertPDFtoDOCX(finf.FullName.ToString(), strTempAddress);
                     //System.Diagnostics.Process.Start(outputFile);
                 }
                 catch (Exception ex)

@@ -5,6 +5,10 @@ VisualStudioVersion = 14.0.25123.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PDFediter", "PDFediter\PDFediter.csproj", "{F8AF6DC8-C595-40BF-A20E-44E69EBE3709}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PDFediter_BS", "PDFediter_BS\PDFediter_BS.csproj", "{64BCB050-206D-4191-A834-319EDF40911A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GenHelper", "GenHelper\GenHelper.csproj", "{65F9AB1C-394F-4D1F-8232-B34A0DD98CB6}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +19,14 @@ Global
 		{F8AF6DC8-C595-40BF-A20E-44E69EBE3709}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F8AF6DC8-C595-40BF-A20E-44E69EBE3709}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F8AF6DC8-C595-40BF-A20E-44E69EBE3709}.Release|Any CPU.Build.0 = Release|Any CPU
+		{64BCB050-206D-4191-A834-319EDF40911A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{64BCB050-206D-4191-A834-319EDF40911A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{64BCB050-206D-4191-A834-319EDF40911A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{64BCB050-206D-4191-A834-319EDF40911A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{65F9AB1C-394F-4D1F-8232-B34A0DD98CB6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{65F9AB1C-394F-4D1F-8232-B34A0DD98CB6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{65F9AB1C-394F-4D1F-8232-B34A0DD98CB6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{65F9AB1C-394F-4D1F-8232-B34A0DD98CB6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
